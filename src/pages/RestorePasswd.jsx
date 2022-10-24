@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+/* import { Link } from "react-router-dom"; */
+import Swal from "sweetalert2";
 
 /* import Navbar from "../components/Navbar";
 import Footer from "../components/Footer"; */
@@ -9,6 +10,21 @@ import docentaLogo from "../images/docenta_logo.png";
 import "../css/loginStyles.css";
 
 function Login() {
+  // Función para desplegar pop-up de recuperación de contraseña
+  const handleRestore = () => {
+    Swal.fire({
+      title: "¡Éxito!",
+      text: "Tu contraseña ha sido restaurada correctamente.",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2500,
+    }).then(() => {
+      setTimeout(() => {
+        window.location.replace("/login");
+      }, 1500);
+    });
+  };
+
   return (
     <>
       {/* <Navbar transparent /> */}
@@ -29,19 +45,12 @@ function Login() {
                 alt="Hombre en ordenador"
               />
               <h1 className="mt-6 text-2xl font-medium font-style text-gray-900 sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl">
-                Iniciar sesión
+                Restaurar contraseña
                 <br className="hidden lg:inline" />
               </h1>
-              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-light w-fit">
-                ¿Todavía no tienes cuenta? <br className="inline lg:hidden" />
-                <Link
-                  className="text-red-600 hover:text-emerald-600"
-                  to="/register"
-                  style={{ transition: "all .15s ease" }}
-                >
-                  Regístrate
-                </Link>
-                .
+              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-light">
+                Introduce debajo tu nueva contraseña para poder restaurarla y
+                acceder nuevamente al sistema.
               </p>
               <br />
               <form>
@@ -50,21 +59,7 @@ function Login() {
                     className="block uppercase text-gray-700 text-xs font-semibold mb-2"
                     htmlFor="grid-password"
                   >
-                    Correo electrónico
-                  </label>
-                  <input
-                    type="email"
-                    className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
-                    placeholder="Introduce tu correo electrónico"
-                    style={{ transition: "all .15s ease" }}
-                  />
-                </div>
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-gray-700 text-xs font-semibold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    Contraseña
+                    Nueva contraseña
                   </label>
                   <input
                     type="password"
@@ -73,41 +68,30 @@ function Login() {
                     style={{ transition: "all .15s ease" }}
                   />
                 </div>
-                <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
-                  <div className="2xl:col-span-1">
-                    <label className="inline-flex items-center cursor-pointer pt-2">
-                      <input
-                        id="customCheckLogin"
-                        type="checkbox"
-                        className="form-checkbox border-0 rounded-lg text-red-800 ml-1 w-5 h-5"
-                        style={{ transition: "all .15s ease" }}
-                      />
-                      <span className="ml-2 text-sm font-light text-gray-700">
-                        Recuérdame
-                      </span>
-                    </label>
-                  </div>
-                  <div className="2xl:col-span-1 lg:text-right">
-                    <label className="inline-flex items-center cursor-pointer pt-2">
-                      <Link
-                        className="text-sm font-light text-gray-700 hover:text-red-600"
-                        to="/forgot-passwd"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        ¿Has olvidado tu contraseña?
-                      </Link>
-                    </label>
-                  </div>
+
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-gray-700 text-xs font-semibold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Confirmar contraseña
+                  </label>
+                  <input
+                    type="password"
+                    className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
+                    placeholder="Introduce tu contraseña"
+                    style={{ transition: "all .15s ease" }}
+                  />
                 </div>
                 <div className="mt-4 sm:mt-6">
-                  <Link
+                  <button
                     className="inline-block px-5 py-3 rounded-3xl bg-red-600 hover:bg-red-800 uppercase text-center tracking-wider font-semibold text-sm text-white shadow-lg sm:text-base w-full"
                     type="button"
                     style={{ transition: "all .15s ease" }}
-                    to=""
+                    onClick={handleRestore}
                   >
-                    Entrar
-                  </Link>
+                    Enviar
+                  </button>
                 </div>
               </form>
             </div>
