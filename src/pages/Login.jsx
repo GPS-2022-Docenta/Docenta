@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+/* import Navbar from "../components/Navbar";
+import Footer from "../components/Footer"; */
 import loginImage from "../images/login.png";
 import docentaLogo from "../images/docenta_logo.png";
 
-import "../css/login.css";
+import "../css/Login.css";
 
-export default function Login() {
+function Login() {
   return (
     <>
       {/* <Navbar transparent /> */}
       <main>
-        <div className=" absolute w-full h-full bg-gray-100 grid lg:grid-cols-2 2xl:grid-cols-6">
+        <div className=" absolute w-full h-full bg-gray-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
           <div className="hidden relative lg:block 2xl:col-span-4">
             <img
               className="absolute inset-0 w-full h-full object-cover object-center"
@@ -36,13 +36,13 @@ export default function Login() {
                 ¿Ya tienes una cuenta? <br className="inline lg:hidden" />
                 Inicia sesión{" "}
                 <Link
-                  className="text-red-600 hover:text-indigo-600"
+                  className="text-red-600 hover:text-emerald-600"
                   to="/login"
                   style={{ transition: "all .15s ease" }}
                 >
                   aquí
                 </Link>
-                !
+                .
               </p>
               <br />
               <form>
@@ -84,7 +84,7 @@ export default function Login() {
                         className="form-checkbox border-0 rounded-lg text-red-800 ml-1 w-5 h-5"
                         style={{ transition: "all .15s ease" }}
                       />
-                      <span className="ml-2 text-sm font-light text-gray-700 pointer-events-none">
+                      <span className="ml-2 text-sm font-light text-gray-700">
                         Recuérdame
                       </span>
                     </label>
@@ -120,3 +120,5 @@ export default function Login() {
     </>
   );
 }
+
+export default Login;
