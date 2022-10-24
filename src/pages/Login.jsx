@@ -108,7 +108,7 @@ export default function Login() {
                     type="button"
                     style={{ transition: "all .15s ease" }}
                   >
-                    Book your escape
+                    Entrar
                   </button>
                 </div>
               </form>
