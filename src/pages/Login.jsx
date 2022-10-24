@@ -6,7 +6,7 @@ import Footer from "../components/Footer"; */
 import loginImage from "../images/login.png";
 import docentaLogo from "../images/docenta_logo.png";
 
-import "../css/Login.css";
+import "../css/login.css";
 
 function Login() {
   return (

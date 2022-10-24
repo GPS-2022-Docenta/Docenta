@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "../css/Login.css";
+import "../css/login.css";
 
 // URLs para manejo de datos en la BD
 // const loginURL = "https://cryptoaholic-api.vercel.app/login/";
