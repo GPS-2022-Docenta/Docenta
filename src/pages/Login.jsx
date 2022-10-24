@@ -28,11 +28,11 @@ export default function Login() {
                 src={docentaLogo}
                 alt="Hombre en ordenador"
               />
-              <h1 className="mt-6 text-2xl font-semibold text-gray-900 sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl">
+              <h1 className="mt-6 text-2xl font-medium font-style text-gray-900 sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl">
                 Iniciar sesión
                 <br className="hidden lg:inline" />
               </h1>
-              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-semibold">
+              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-light">
                 ¿Ya tienes una cuenta? <br className="inline lg:hidden" />
                 Inicia sesión{" "}
                 <Link
@@ -48,14 +48,14 @@ export default function Login() {
               <form>
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                    className="block uppercase text-gray-700 text-xs font-semibold mb-2"
                     htmlFor="grid-password"
                   >
                     Correo electrónico
                   </label>
                   <input
                     type="email"
-                    className="border-b-2 px-3 py-3 font-bold placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
+                    className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu correo electrónico"
                     style={{ transition: "all .15s ease" }}
                   />
@@ -63,14 +63,14 @@ export default function Login() {
 
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                    className="block uppercase text-gray-700 text-xs font-semibold mb-2"
                     htmlFor="grid-password"
                   >
                     Contraseña
                   </label>
                   <input
                     type="password"
-                    className="border-b-2 px-3 py-3 font-bold placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
+                    className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu contraseña"
                     style={{ transition: "all .15s ease" }}
                   />
@@ -84,7 +84,7 @@ export default function Login() {
                         className="form-checkbox border-0 rounded-lg text-red-800 ml-1 w-5 h-5"
                         style={{ transition: "all .15s ease" }}
                       />
-                      <span className="ml-2 text-sm font-semibold text-gray-700 pointer-events-none">
+                      <span className="ml-2 text-sm font-light text-gray-700 pointer-events-none">
                         Recuérdame
                       </span>
                     </label>
@@ -92,7 +92,7 @@ export default function Login() {
                   <div className="2xl:col-span-1 lg:text-right">
                     <label className="inline-flex items-center cursor-pointer pt-2">
                       <Link
-                        className="text-sm font-semibold text-gray-700 hover:text-red-600"
+                        className="text-sm font-light text-gray-700 hover:text-red-600"
                         to={""}
                         style={{ transition: "all .15s ease" }}
                       >
