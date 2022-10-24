@@ -32,7 +32,7 @@ export default function Login() {
                 Iniciar sesión
                 <br className="hidden lg:inline" />
               </h1>
-              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl">
+              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-bold">
                 ¿Ya tienes una cuenta? <br className="inline lg:hidden" />
                 Inicia sesión{" "}
                 <Link
@@ -55,7 +55,7 @@ export default function Login() {
                   </label>
                   <input
                     type="email"
-                    className="border-b-2 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
+                    className="border-b-2 px-3 py-3 font-bold placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu correo electrónico"
                     style={{ transition: "all .15s ease" }}
                   />
@@ -70,7 +70,7 @@ export default function Login() {
                   </label>
                   <input
                     type="password"
-                    className="border-b-2 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
+                    className="border-b-2 px-3 py-3 font-bold placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu contraseña"
                     style={{ transition: "all .15s ease" }}
                   />
@@ -89,10 +89,10 @@ export default function Login() {
                       </span>
                     </label>
                   </div>
-                  <div className="2xl:col-span-1">
+                  <div className="2xl:col-span-1 lg:text-right">
                     <label className="inline-flex items-center cursor-pointer">
                       <Link
-                        className="ml-2 text-sm font-semibold text-gray-700 hover:text-red-600"
+                        className="text-sm font-semibold text-gray-700 hover:text-red-600"
                         to={""}
                         style={{ transition: "all .15s ease" }}
                       >
