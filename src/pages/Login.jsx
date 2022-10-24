@@ -32,7 +32,7 @@ export default function Login() {
                 Iniciar sesión
                 <br className="hidden lg:inline" />
               </h1>
-              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-light">
+              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-semibold">
                 ¿Ya tienes una cuenta? <br className="inline lg:hidden" />
                 Inicia sesión{" "}
                 <Link
@@ -84,7 +84,7 @@ export default function Login() {
                         className="form-checkbox border-0 rounded-lg text-red-800 ml-1 w-5 h-5"
                         style={{ transition: "all .15s ease" }}
                       />
-                      <span className="ml-2 text-sm font-light text-gray-700 pointer-events-none">
+                      <span className="ml-2 text-sm font-semibold text-gray-700 pointer-events-none">
                         Recuérdame
                       </span>
                     </label>
@@ -92,7 +92,7 @@ export default function Login() {
                   <div className="2xl:col-span-1 lg:text-right">
                     <label className="inline-flex items-center cursor-pointer pt-2">
                       <Link
-                        className="text-sm font-light text-gray-700 hover:text-red-600"
+                        className="text-sm font-semibold text-gray-700 hover:text-red-600"
                         to={""}
                         style={{ transition: "all .15s ease" }}
                       >

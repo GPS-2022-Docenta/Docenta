@@ -17,7 +17,14 @@
 
 @font-face {
   font-family: SF-Pro-Ultralight;
-  src: url(./fonts/SF-Pro-Display-Ultralight.otf);
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.eot?#iefix)
+      format("embedded-opentype"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2)
+      format("woff2"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff)
+      format("woff"),
+    url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.ttf)
+      format("truetype");
 }
 
 @font-face {
@@ -26,7 +33,7 @@
 }
 
 * {
-  font-family: "Poppins";
+  font-family: SF-Pro-Ultralight;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
