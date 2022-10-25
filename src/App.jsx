@@ -5,9 +5,9 @@ import "./App.css";
 
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
-/* import Register from "./pages/Register.jsx";
+import Register from "./pages/Register.jsx";
 import ForgotPasswd from "./pages/ForgotPasswd.jsx";
-import RestorePasswd from "./pages/RestorePasswd.jsx"; */
+import RestorePasswd from "./pages/RestorePasswd.jsx";
 
 function App() {
   return (
@@ -20,9 +20,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/forgot-passwd" element={<ForgotPasswd />} />
-        <Route path="/restore-passwd" element={<RestorePasswd />} /> */}
+        <Route path="/restore-passwd" element={<RestorePasswd />} />
         <Route path="/profile" element="" />
         <Route path="/profile-settings" element="" />
       </Routes>
