@@ -4,10 +4,10 @@ import { Helmet } from "react-helmet";
 import "./App.css";
 
 import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
+/* import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import ForgotPasswd from "./pages/ForgotPasswd.jsx";
-import RestorePasswd from "./pages/RestorePasswd.jsx";
+import RestorePasswd from "./pages/RestorePasswd.jsx"; */
 
 function App() {
   return (
