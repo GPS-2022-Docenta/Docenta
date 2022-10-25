@@ -123,7 +123,7 @@ function RegisterWeb() {
     }
   };
 
-  const formatBirthday = (birthday) => {};
+  /* const formatBirthday = (birthday) => {};
 
   // Extraer usuarios de la BD
   useEffect(() => {
@@ -327,7 +327,7 @@ function RegisterWeb() {
           }
         });
     }
-  };
+  }; */
 
   return (
     <>
@@ -449,7 +449,7 @@ function RegisterWeb() {
               locale="es"
               labelFormat="MMMM YYYY"
               inputFormat="DD/MM/YYYY"
-              onDropdownClose={() => formatBirthday(birthday)}
+              /* onDropdownClose={() => formatBirthday(birthday)} */
             />
           </div>
         </SwiperSlide>
@@ -610,7 +610,7 @@ function RegisterWeb() {
           className="inline-block px-5 py-3 rounded-3xl bg-red-600 hover:bg-red-800 uppercase text-center tracking-wider font-semibold text-sm text-white shadow-lg sm:text-base w-full"
           type="button"
           style={{ transition: "all .15s ease" }}
-          onClick={handleRegister}
+          /* onClick={handleRegister} */
         >
           Registrar
         </button>
