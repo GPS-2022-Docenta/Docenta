@@ -12,12 +12,12 @@ import axios from "axios";
 import dayjs from "dayjs";
 import "../css/loginStyles.css";
 
-require("dayjs/locale/es");
+/* require("dayjs/locale/es");
 dayjs.locale("es");
 
 // URLs para manejo de datos en la BD
 const usersURL = "https://docenta-api.vercel.app/users/";
-const registerURL = "https://docenta-api.vercel.app/register/";
+const registerURL = "https://docenta-api.vercel.app/register/"; */
 
 // Expresión regular para validar formato de correo electrónico
 const regExpMail = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/);
@@ -409,12 +409,12 @@ function RegisterMobile() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <input
-              {...register("email", {
+              /* {...register("email", {
                 pattern: {
                   value: regExpMail,
                   message: "Correo electrónico no válido.",
                 },
-              })}
+              })} */
               type="email"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="P.ej.: correo@docenta.com"
@@ -433,7 +433,7 @@ function RegisterMobile() {
               Fecha de nacimiento{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <DatePicker
+            {/* <DatePicker
               value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
@@ -443,7 +443,7 @@ function RegisterMobile() {
               labelFormat="MMMM YYYY"
               inputFormat="DD-MM-YYYY"
               onDropdownClose={() => formatBirthday(birthday)}
-            />
+            /> */}
             <p className="font-normal text-red-600 text-right text-sm ">
               {errors.birthday?.message}
             </p>
@@ -458,14 +458,14 @@ function RegisterMobile() {
               País de residencia{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <Select
+            {/* <Select
               searchable
               nothingFound="Sin opciones"
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
               onSelect={({ target }) => setCountry(target.value)}
-            />
+            /> */}
             <p className="font-normal text-red-600 text-right text-sm ">
               {errors.country?.message}
             </p>
@@ -479,12 +479,12 @@ function RegisterMobile() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <input
-              {...register("phone", {
+              /* {...register("phone", {
                 pattern: {
                   value: regExpTlf,
                   message: "Número de teléfono no válido (XXXYYYZZZ).",
                 },
-              })}
+              })} */
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="P.ej.: 666555444"
@@ -502,12 +502,12 @@ function RegisterMobile() {
             >
               Género <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <Select
+            {/* <Select
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
               onSelect={({ target }) => setGender(target.value)}
-            />
+            /> */}
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
@@ -541,7 +541,7 @@ function RegisterMobile() {
                 </ButtonUnstyled>
               </div>
             </div>
-            <PasswordStrengthBar
+            {/* <PasswordStrengthBar
               password={password}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -552,7 +552,7 @@ function RegisterMobile() {
                 "Excelente",
               ]}
               minLength={8}
-            />
+            /> */}
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
@@ -586,7 +586,7 @@ function RegisterMobile() {
                 </ButtonUnstyled>
               </div>
             </div>
-            <PasswordStrengthBar
+            {/* <PasswordStrengthBar
               password={cPassword}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -600,7 +600,7 @@ function RegisterMobile() {
               onChangeScore={(score, feedback) => {
                 setPasswdStrength(score);
               }}
-            />
+            /> */}
           </div>
         </div>
       </div>
