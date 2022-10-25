@@ -141,6 +141,7 @@ function RegisterMobile() {
       email === "" ||
       country === "" ||
       gender === "" ||
+      birthday === "" ||
       phone === ""
     ) {
       return true;

@@ -462,21 +462,14 @@ function RegisterWeb() {
               País de residencia{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <input
-              type="text"
-              className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
-              placeholder="Selecciona un país"
-              style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setCountry(target.value)}
-            />
-            {/* <Select
+            <Select
               searchable
               nothingFound="Sin opciones"
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
               onSelect={({ target }) => setCountry(target.value)}
-            /> */}
+            />
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -510,19 +503,12 @@ function RegisterWeb() {
             >
               Género <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <input
-              type="text"
-              className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
-              placeholder="Selecciona un género"
-              style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setGender(target.value)}
-            />
-            {/* <Select
+            <Select
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
               onSelect={({ target }) => setGender(target.value)}
-            /> */}
+            />
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
