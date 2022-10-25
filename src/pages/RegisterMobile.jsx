@@ -19,24 +19,24 @@ dayjs.locale("es");
 const usersURL = "https://docenta-api.vercel.app/users/";
 const registerURL = "https://docenta-api.vercel.app/register/"; */
 
-// Expresión regular para validar formato de correo electrónico
+/* // Expresión regular para validar formato de correo electrónico
 const regExpMail = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/);
 // Expresión regular para validar formato de teléfono
 const regExpTlf = RegExp(/^\(?([0-9]{3})\)?([0-9]{3})([0-9]{3})$/);
 // Expresión regular para validar formato de nombre de usuario
 const regExpNickname = RegExp(
   /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
-);
+); */
 
 function RegisterMobile() {
-  const {
+  /* const {
     register,
     formState: { errors },
   } = useForm({
     mode: "all",
-  });
+  }); */
 
-  const [users, setUsers] = useState([]);
+  /* const [users, setUsers] = useState([]);
   const genders = ["Hombre", "Mujer", "No binario", "Prefiero no decirlo"];
 
   const [nickName, setNickName] = useState("");
@@ -50,14 +50,14 @@ function RegisterMobile() {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [cPassword, setCPassword] = useState("");
-  const [passwdStrength, setPasswdStrength] = useState("");
+  const [passwdStrength, setPasswdStrength] = useState(""); */
 
   const [typePass, setTypePass] = useState("password");
   const [typeCPass, setTypeCPass] = useState("password");
   const [iconPass, setIconPass] = useState(faEyeSlash);
   const [iconCPass, setIconCPass] = useState(faEyeSlash);
 
-  // Estilo para el input del calendario
+  /* // Estilo para el input del calendario
   const useStyles = createStyles((theme) => ({
     root: {
       position: "relative",
@@ -94,7 +94,7 @@ function RegisterMobile() {
     },
   }));
 
-  const { classes } = useStyles();
+  const { classes } = useStyles(); */
 
   // Mostrar contraseña
   const handleToggle = () => {
@@ -118,9 +118,9 @@ function RegisterMobile() {
     }
   };
 
-  const formatBirthday = (birthday) => {
+  /* const formatBirthday = (birthday) => {
     setFormatBD(dayjs(birthday).format("YYYY-MM-DD"));
-  };
+  }; */
   /* 
   // Extraer usuarios de la BD
   useEffect(() => {
@@ -342,11 +342,11 @@ function RegisterMobile() {
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="Introduce tu nombre"
               style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setFirstName(target.value)}
+              /* onChange={({ target }) => setFirstName(target.value)} */
             />
-            <p className="font-normal text-red-600 text-right text-sm ">
+            {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.firstName?.message}
-            </p>
+            </p> */}
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -361,11 +361,11 @@ function RegisterMobile() {
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="Introduce tu apellido"
               style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setLastName(target.value)}
+              /* onChange={({ target }) => setLastName(target.value)} */
             />
-            <p className="font-normal text-red-600 text-right text-sm ">
+            {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.lastName?.message}
-            </p>
+            </p> */}
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -376,7 +376,7 @@ function RegisterMobile() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <input
-              {...register("nickName", {
+              /* {...register("nickName", {
                 pattern: {
                   value: regExpNickname,
                   message: "Nombre de usuario no válido.",
@@ -389,16 +389,16 @@ function RegisterMobile() {
                   value: 30,
                   message: "El nombre debe tener como máximo 30 caracteres.",
                 },
-              })}
+              })} */
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="Introduce tu nombre de usuario"
               style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setNickName(target.value)}
+              /* onChange={({ target }) => setNickName(target.value)} */
             />
-            <p className="font-normal text-red-600 text-right text-sm ">
+            {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.nickName?.message}
-            </p>
+            </p> */}
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -419,11 +419,11 @@ function RegisterMobile() {
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="P.ej.: correo@docenta.com"
               style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setEmail(target.value)}
+              /* onChange={({ target }) => setEmail(target.value)} */
             />
-            <p className="font-normal text-red-600 text-right text-sm ">
+            {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.email?.message}
-            </p>
+            </p> */}
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -444,9 +444,9 @@ function RegisterMobile() {
               inputFormat="DD-MM-YYYY"
               onDropdownClose={() => formatBirthday(birthday)}
             /> */}
-            <p className="font-normal text-red-600 text-right text-sm ">
+            {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.birthday?.message}
-            </p>
+            </p> */}
           </div>
         </div>
         <div>
@@ -466,9 +466,9 @@ function RegisterMobile() {
               classNames={classes}
               onSelect={({ target }) => setCountry(target.value)}
             /> */}
-            <p className="font-normal text-red-600 text-right text-sm ">
+            {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.country?.message}
-            </p>
+            </p> */}
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -489,11 +489,11 @@ function RegisterMobile() {
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="P.ej.: 666555444"
               style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setPhone(target.value)}
+              /* onChange={({ target }) => setPhone(target.value)} */
             />
-            <p className="font-normal text-red-600 text-right text-sm ">
+            {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.phone?.message}
-            </p>
+            </p> */}
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -529,7 +529,7 @@ function RegisterMobile() {
                   className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                   placeholder="Introduce tu contraseña"
                   style={{ transition: "all .15s ease" }}
-                  onChange={({ target }) => setPassword(target.value)}
+                  /* onChange={({ target }) => setPassword(target.value)} */
                 />
               </div>
               <div className="col-span-1 text-right">
@@ -574,7 +574,7 @@ function RegisterMobile() {
                   className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                   placeholder="Introduce tu contraseña"
                   style={{ transition: "all .15s ease" }}
-                  onChange={({ target }) => setCPassword(target.value)}
+                  /* onChange={({ target }) => setCPassword(target.value)} */
                 />
               </div>
               <div className="col-span-1 text-right">
