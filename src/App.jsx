@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./App.css";
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import ForgotPasswd from "./pages/ForgotPasswd";
-import RestorePasswd from "./pages/RestorePasswd";
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import ForgotPasswd from "./pages/ForgotPasswd.jsx";
+import RestorePasswd from "./pages/RestorePasswd.jsx";
 
 function App() {
   return (
@@ -19,12 +19,12 @@ function App() {
       </Helmet>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-passwd" element={<ForgotPasswd />} />
         <Route path="/restore-passwd" element={<RestorePasswd />} />
         <Route path="/profile" element="" />
-        <Route path="/profile-settings" element="" />
+        <Route path="/profile-settings" element="" /> */}
       </Routes>
     </>
   );
