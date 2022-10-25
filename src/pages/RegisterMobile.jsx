@@ -36,7 +36,7 @@ function RegisterMobile() {
     mode: "all",
   }); */
 
-  /* const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   const genders = ["Hombre", "Mujer", "No binario", "Prefiero no decirlo"];
 
   const [nickName, setNickName] = useState("");
@@ -50,14 +50,14 @@ function RegisterMobile() {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [cPassword, setCPassword] = useState("");
-  const [passwdStrength, setPasswdStrength] = useState(""); */
+  const [passwdStrength, setPasswdStrength] = useState("");
 
   const [typePass, setTypePass] = useState("password");
   const [typeCPass, setTypeCPass] = useState("password");
   const [iconPass, setIconPass] = useState(faEyeSlash);
   const [iconCPass, setIconCPass] = useState(faEyeSlash);
 
-  /* // Estilo para el input del calendario
+  // Estilo para el input del calendario
   const useStyles = createStyles((theme) => ({
     root: {
       position: "relative",
@@ -94,7 +94,7 @@ function RegisterMobile() {
     },
   }));
 
-  const { classes } = useStyles(); */
+  const { classes } = useStyles();
 
   // Mostrar contraseña
   const handleToggle = () => {
@@ -415,7 +415,7 @@ function RegisterMobile() {
                   message: "Correo electrónico no válido.",
                 },
               })} */
-              type="email"
+              type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="P.ej.: correo@docenta.com"
               style={{ transition: "all .15s ease" }}
@@ -433,7 +433,7 @@ function RegisterMobile() {
               Fecha de nacimiento{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <DatePicker
+            <DatePicker
               value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
@@ -442,8 +442,8 @@ function RegisterMobile() {
               locale="es"
               labelFormat="MMMM YYYY"
               inputFormat="DD-MM-YYYY"
-              onDropdownClose={() => formatBirthday(birthday)}
-            /> */}
+              /* onDropdownClose={() => formatBirthday(birthday)} */
+            />
             {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.birthday?.message}
             </p> */}
@@ -458,14 +458,14 @@ function RegisterMobile() {
               País de residencia{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <Select
+            <Select
               searchable
               nothingFound="Sin opciones"
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
               onSelect={({ target }) => setCountry(target.value)}
-            /> */}
+            />
             {/* <p className="font-normal text-red-600 text-right text-sm ">
               {errors.country?.message}
             </p> */}
@@ -502,12 +502,12 @@ function RegisterMobile() {
             >
               Género <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <Select
+            <Select
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
               onSelect={({ target }) => setGender(target.value)}
-            /> */}
+            />
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
