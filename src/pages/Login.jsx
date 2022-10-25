@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ButtonUnstyled } from "@mui/base";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -145,10 +145,7 @@ function Login() {
                         className="block uppercase text-gray-700 text-xs font-semibold mb-2"
                         htmlFor="grid-password"
                       >
-                        Contraseña{" "}
-                        <span className="font-normal text-md text-red-600">
-                          *
-                        </span>
+                        Contraseña
                       </label>
                     </div>
                     <div className="lg:col-span-1 text-right text-xs font-medium"></div>

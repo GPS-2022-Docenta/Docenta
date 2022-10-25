@@ -7,15 +7,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { DatePicker } from "@mantine/dates";
 import { createStyles, Select } from "@mantine/core";
+import { countryList } from "../data/Countries";
 import PasswordStrengthBar from "react-password-strength-bar";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "dayjs/locale/es";
-
+import dayjs from "dayjs";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../css/loginStyles.css";
+
+require("dayjs/locale/es");
+dayjs.locale("es");
 
 // URLs para manejo de datos en la BD
 const usersURL = "https://docenta-api.vercel.app/users/";
@@ -46,7 +49,7 @@ function RegisterWeb() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [formatBD, setFormatBD] = useState("");
+  /*   const [formatBD, setFormatBD] = useState(""); */
   const [country, setCountry] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
@@ -326,8 +329,6 @@ function RegisterWeb() {
     }
   };
 
-  console.log(gender);
-
   return (
     <>
       <Swiper
@@ -461,16 +462,14 @@ function RegisterWeb() {
               País de residencia{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <input
-              type="text"
-              className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
+            <Select
+              searchable
+              nothingFound="Sin opciones"
+              data={countryList}
               placeholder="Selecciona un país de la lista"
-              style={{ transition: "all .15s ease" }}
-              onChange={({ target }) => setCountry(target.value)}
+              classNames={classes}
+              onSelect={({ target }) => setCountry(target.value)}
             />
-            <p className="font-normal text-red-600 text-right text-sm ">
-              {errors.country?.message}
-            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -505,11 +504,10 @@ function RegisterWeb() {
               Género <span className="font-normal text-md text-red-600">*</span>
             </label>
             <Select
-              style={{ zIndex: 2 }}
               data={genders}
-              placeholder="Selecciona tu género"
+              placeholder="Selecciona un género de la lista"
               classNames={classes}
-              onSelect={(e) => setGender(e.target.value)}
+              onSelect={({ target }) => setGender(target.value)}
             />
           </div>
           <div className="relative w-full mb-3">
