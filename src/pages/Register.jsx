@@ -12,7 +12,6 @@ import RegisterMobile from "./RegisterMobile";
 function Register() {
   return (
     <>
-      {/* <Navbar transparent /> */}
       <main>
         <div className="absolute w-full lg:h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
           <div className="hidden relative bg-slate-100 lg:block 2xl:col-span-4">
@@ -55,7 +54,6 @@ function Register() {
               </form>
             </div>
           </div>
-          {/* <Footer absolute /> */}
         </div>
       </main>
     </>

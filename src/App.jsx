@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import "./App.css";
 
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
-import ForgotPasswd from "./pages/ForgotPasswd.jsx";
-import RestorePasswd from "./pages/RestorePasswd.jsx";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPasswd from "./pages/ForgotPasswd";
+import RestorePasswd from "./pages/RestorePasswd";
 
 function App() {
   return (

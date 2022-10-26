@@ -89,7 +89,6 @@ function Login() {
 
   return (
     <>
-      {/* <Navbar transparent /> */}
       <main>
         <div className=" absolute w-full h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
           <div className="hidden relative lg:block 2xl:col-span-4">
@@ -209,7 +208,6 @@ function Login() {
               </form>
             </div>
           </div>
-          {/* <Footer absolute /> */}
         </div>
       </main>
     </>
