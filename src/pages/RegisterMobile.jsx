@@ -15,8 +15,6 @@ import "../css/loginStyles.css";
 require("dayjs/locale/es");
 dayjs.locale("es");
 
-console.log("Hola mundo!");
-
 // URLs para manejo de datos en la BD
 const usersURL = "https://docenta-api.vercel.app/users/";
 const registerURL = "https://docenta-api.vercel.app/register/";

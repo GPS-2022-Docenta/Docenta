@@ -443,15 +443,14 @@ function RegisterWeb() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <DatePicker
-              value={birthday}
+              value={formatBD}
               placeholder="¿Qué día naciste?"
               clearable={false}
               classNames={classes}
-              onChange={setBirthday}
+              onChange={setFormatBD}
               locale="es"
               labelFormat="MMMM YYYY"
               inputFormat="DD/MM/YYYY"
-              onDropdownClose={() => formatBirthday(birthday)}
             />
           </div>
         </SwiperSlide>
@@ -470,7 +469,7 @@ function RegisterWeb() {
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
-              onSelect={({ target }) => setCountry(target.value)}
+              onSelect={(e) => setCountry(e.target.value)}
             />
           </div>
           <div className="relative w-full mb-3">
@@ -509,7 +508,7 @@ function RegisterWeb() {
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
-              onSelect={({ target }) => setGender(target.value)}
+              onSelect={(e) => setGender(e.target.value)}
             />
           </div>
           <div className="relative w-full mb-3">
