@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 /* import { Link } from "react-router-dom"; */
 import Swal from "sweetalert2";
 import loginImage from "../images/login.png";
@@ -7,26 +7,48 @@ import docentaLogo from "../images/docenta_logo.png";
 import "../css/userFormStyles.css";
 
 function Login() {
+  const [password, setPassword] = useState("");
+  const [cPassword, setCPassword] = useState("");
+
+  // Comprobar si hay campos vacíos
+  const checkNullForm = () => {
+    if (password === "" || cPassword === "") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   // Función para desplegar pop-up de recuperación de contraseña
   const handleRestore = () => {
-    Swal.fire({
-      title: "¡Éxito!",
-      text: "Tu contraseña ha sido restaurada correctamente.",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 2500,
-    }).then(() => {
-      setTimeout(() => {
-        window.location.replace("/login");
-      }, 1500);
-    });
+    if (checkNullForm()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Los campos no pueden estar vacíos.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else {
+      Swal.fire({
+        title: "¡Éxito!",
+        text: "Tu contraseña ha sido restaurada correctamente.",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2500,
+      }).then(() => {
+        setTimeout(() => {
+          window.location.replace("/login");
+        }, 1500);
+      });
+    }
   };
 
   return (
     <>
       {/* <Navbar transparent /> */}
       <main>
-        <div className=" absolute w-full h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
+        <div className=" absolute w-full lg:h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
           <div className="hidden relative lg:block 2xl:col-span-4">
             <img
               className="absolute inset-0 w-full h-full object-cover object-center"
@@ -50,7 +72,7 @@ function Login() {
                 acceder nuevamente al sistema.
               </p>
               <br />
-              <form>
+              <form autoComplete="off">
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-gray-700 text-xs font-semibold mb-2"
@@ -63,6 +85,7 @@ function Login() {
                     className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu contraseña"
                     style={{ transition: "all .15s ease" }}
+                    onChange={({ target }) => setPassword(target.value)}
                   />
                 </div>
 
@@ -78,6 +101,7 @@ function Login() {
                     className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu contraseña"
                     style={{ transition: "all .15s ease" }}
+                    onChange={({ target }) => setCPassword(target.value)}
                   />
                 </div>
                 <div className="mt-4 sm:mt-6">

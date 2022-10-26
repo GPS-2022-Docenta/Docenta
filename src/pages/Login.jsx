@@ -90,7 +90,7 @@ function Login() {
   return (
     <>
       <main>
-        <div className=" absolute w-full h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
+        <div className=" absolute w-full lg:h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
           <div className="hidden relative lg:block 2xl:col-span-4">
             <img
               className="absolute inset-0 w-full h-full object-cover object-center"
@@ -121,7 +121,7 @@ function Login() {
                 .
               </p>
               <br />
-              <form>
+              <form autoComplete="off">
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-gray-700 text-xs font-semibold mb-2"
