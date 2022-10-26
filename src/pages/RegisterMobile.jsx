@@ -120,10 +120,10 @@ function RegisterMobile() {
     }
   };
 
-  /* const formatBirthday = (birthday) => {
+  const formatBirthday = (birthday) => {
     setFormatBD(dayjs(birthday).format("YYYY-MM-DD"));
-  }; */
-  /* 
+  };
+
   // Extraer usuarios de la BD
   useEffect(() => {
     const fetchUsers = async () => {
@@ -326,7 +326,7 @@ function RegisterMobile() {
           }
         });
     }
-  }; */
+  };
 
   return (
     <>
