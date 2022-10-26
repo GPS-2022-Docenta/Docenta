@@ -20,13 +20,12 @@ const usersURL = "https://docenta-api.vercel.app/users/";
 const registerURL = "https://docenta-api.vercel.app/register/";
 
 // Expresión regular para validar formato de correo electrónico
-const regExpMail = new RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/);
+const regExpMail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
 // Expresión regular para validar formato de teléfono
-const regExpTlf = new RegExp(/^\(?([0-9]{3})\)?([0-9]{3})([0-9]{3})$/);
+const regExpTlf = /^\(?([0-9]{3})\)?([0-9]{3})([0-9]{3})$/;
 // Expresión regular para validar formato de nombre de usuario
-const regExpNickname = new RegExp(
-  /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
-);
+const regExpNickname =
+  /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
 
 function RegisterMobile() {
   const {
