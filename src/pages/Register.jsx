@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "../css/loginStyles.css";
 import loginImage from "../images/login.png";
 import docentaLogo from "../images/docenta_logo.png";
-/* import RegisterWeb from "./RegisterWeb.jsx"; */
+import RegisterWeb from "./RegisterWeb";
 import RegisterMobile from "./RegisterMobile";
 
 function Register() {
@@ -50,7 +50,7 @@ function Register() {
                   * Campos obligatorios.
                 </p>
                 <br />
-                {/* <RegisterWeb /> */}
+                <RegisterWeb />
                 <RegisterMobile />
               </form>
             </div>
