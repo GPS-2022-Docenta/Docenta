@@ -178,15 +178,15 @@ function RegisterMobile() {
   };
 
   const checkRegExpNickName = () => {
-    if (errors.nickName?.message === "Nombre de usuario no válido.") {
+    /* if (errors.nickName?.message === "Nombre de usuario no válido.") {
       return true;
     } else {
       return false;
-    }
+    } */
   };
 
   const checkNickNameLength = () => {
-    if (
+    /* if (
       errors.nickName?.message ===
         "El nombre debe tener al menos 8 caracteres." ||
       errors.nickName?.message ===
@@ -195,23 +195,23 @@ function RegisterMobile() {
       return true;
     } else {
       return false;
-    }
+    } */
   };
 
   const checkRegExpPhone = () => {
-    if (errors.phone?.message === "Número de teléfono no válido.") {
+    /* if (errors.phone?.message === "Número de teléfono no válido.") {
       return true;
     } else {
       return false;
-    }
+    } */
   };
 
   const checkRegExpEmail = () => {
-    if (errors.email?.message === "Correo electrónico no válido.") {
+    /* if (errors.email?.message === "Correo electrónico no válido.") {
       return true;
     } else {
       return false;
-    }
+    } */
   };
 
   const checkRegExpPassword = () => {
