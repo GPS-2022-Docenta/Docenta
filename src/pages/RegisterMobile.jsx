@@ -376,7 +376,7 @@ function RegisterMobile() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <input
-              {...register("nickName", {
+              /* {...register("nickName", {
                 pattern: {
                   value: regExpNickname,
                   message: "Nombre de usuario no válido.",
@@ -389,7 +389,7 @@ function RegisterMobile() {
                   value: 30,
                   message: "El nombre debe tener como máximo 30 caracteres.",
                 },
-              })}
+              })} */
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="Introduce tu nombre de usuario"
