@@ -533,12 +533,12 @@ function RegisterMobile() {
                 /> */}
               </div>
               <div className="col-span-1 text-right">
-                <ButtonUnstyled
+                {/* <ButtonUnstyled
                   onClick={handleToggle}
                   className="border-b-2 px-auto py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 w-full"
                 >
                   <FontAwesomeIcon icon={iconPass} />
-                </ButtonUnstyled>
+                </ButtonUnstyled> */}
               </div>
             </div>
             {/* <PasswordStrengthBar
@@ -578,12 +578,12 @@ function RegisterMobile() {
                 /> */}
               </div>
               <div className="col-span-1 text-right">
-                <ButtonUnstyled
+                {/* <ButtonUnstyled
                   onClick={handleToggle2}
                   className="border-b-2 px-auto py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 w-full"
                 >
                   <FontAwesomeIcon icon={iconCPass} />
-                </ButtonUnstyled>
+                </ButtonUnstyled> */}
               </div>
             </div>
             {/* <PasswordStrengthBar
