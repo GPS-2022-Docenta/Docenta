@@ -12,8 +12,8 @@ import axios from "axios";
 import dayjs from "dayjs";
 import "../css/loginStyles.css";
 
-/* require("dayjs/locale/es");
-dayjs.locale("es"); */
+require("dayjs/locale/es");
+dayjs.locale("es");
 
 console.log("Hola mundo!");
 
@@ -124,6 +124,210 @@ function RegisterMobile() {
     setFormatBD(dayjs(birthday).format("YYYY-MM-DD"));
   };
 
+  // Extraer usuarios de la BD
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const { data } = await axios.get(usersURL);
+      setUsers(data);
+    };
+    fetchUsers();
+  }, []);
+
+  // Comprobar si hay campos vacíos
+  const checkNullForm = () => {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      nickName === "" ||
+      password === "" ||
+      email === "" ||
+      country === "" ||
+      gender === "" ||
+      birthday === "" ||
+      phone === ""
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  // Comprobar nombre de usuario existente
+  const checkUserName = () => {
+    if (users.find((elem) => elem.nickName === nickName)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  // Comprobar correo electrónico existente
+  const checkEmail = () => {
+    if (users.find((elem) => elem.email === email)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  // Función para compronar si las contraseñas son iguales
+  const checkPassword = () => {
+    if (password !== cPassword) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const checkRegExpNickName = () => {
+    if (errors.nickName?.message === "Nombre de usuario no válido.") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const checkNickNameLength = () => {
+    if (
+      errors.nickName?.message ===
+        "El nombre debe tener al menos 8 caracteres." ||
+      errors.nickName?.message ===
+        "El nombre debe tener como máximo 30 caracteres."
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const checkRegExpPhone = () => {
+    if (errors.phone?.message === "Número de teléfono no válido.") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const checkRegExpEmail = () => {
+    if (errors.email?.message === "Correo electrónico no válido.") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const checkRegExpPassword = () => {
+    if (passwdStrength <= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleRegister = async () => {
+    if (checkNullForm()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Los campos no pueden estar vacíos.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkUserName()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Ya existe un usuario con ese nombre.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkRegExpNickName()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Nombre de usuario no válido.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkNickNameLength()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Nombre de usuario no válido.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkRegExpPhone()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Número de teléfono no válido.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkEmail()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Correo electrónico asociado a una cuenta existente.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkRegExpEmail()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Correo electrónico no válido.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkPassword()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Las contraseñas no coinciden.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (checkRegExpPassword()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "La contraseña no es válida.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else {
+      await axios
+        .post(registerURL, {
+          firstName: firstName,
+          lastName: lastName,
+          nickName: nickName,
+          email: email,
+          password: password,
+          phone: phone,
+          birthday: formatBD,
+          country: country,
+          gender: gender,
+        })
+        .then((response) => {
+          if (response.status === 201) {
+            Swal.fire({
+              title: "¡Éxito!",
+              text: "Tu cuenta ha sido registrada correctamente.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => {
+              setTimeout(() => {
+                window.location.replace("/login");
+              }, 1000);
+            });
+          }
+        });
+    }
+  };
+
   return (
     <>
       <div className="inline lg:hidden">
@@ -174,7 +378,7 @@ function RegisterMobile() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <input
-              /* {...register("nickName", {
+              {...register("nickName", {
                 pattern: {
                   value: regExpNickname,
                   message: "Nombre de usuario no válido.",
@@ -187,7 +391,7 @@ function RegisterMobile() {
                   value: 30,
                   message: "El nombre debe tener como máximo 30 caracteres.",
                 },
-              })} */
+              })}
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="Introduce tu nombre de usuario"
@@ -231,7 +435,7 @@ function RegisterMobile() {
               Fecha de nacimiento{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <DatePicker
+            <DatePicker
               value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
@@ -241,7 +445,7 @@ function RegisterMobile() {
               labelFormat="MMMM YYYY"
               inputFormat="DD-MM-YYYY"
               onDropdownClose={() => formatBirthday(birthday)}
-            /> */}
+            />
             <p className="font-normal text-red-600 text-right text-sm ">
               {errors.birthday?.message}
             </p>
@@ -256,17 +460,17 @@ function RegisterMobile() {
               País de residencia{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <Select
+            <Select
               searchable
               nothingFound="Sin opciones"
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
               onSelect={({ target }) => setCountry(target.value)}
-            /> */}
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            />
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.country?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -277,21 +481,21 @@ function RegisterMobile() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <input
-              /* {...register("phone", {
+              {...register("phone", {
                 pattern: {
                   value: regExpTlf,
                   message: "Número de teléfono no válido (XXXYYYZZZ).",
                 },
-              })} */
+              })}
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="P.ej.: 666555444"
               style={{ transition: "all .15s ease" }}
-              /* onChange={({ target }) => setPhone(target.value)} */
+              onChange={({ target }) => setPhone(target.value)}
             />
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.phone?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -327,7 +531,7 @@ function RegisterMobile() {
                   className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                   placeholder="Introduce tu contraseña"
                   style={{ transition: "all .15s ease" }}
-                  /* onChange={({ target }) => setPassword(target.value)} */
+                  onChange={({ target }) => setPassword(target.value)}
                 />
               </div>
               <div className="col-span-1 text-right">
@@ -339,7 +543,7 @@ function RegisterMobile() {
                 </ButtonUnstyled>
               </div>
             </div>
-            {/* <PasswordStrengthBar
+            <PasswordStrengthBar
               password={password}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -350,7 +554,7 @@ function RegisterMobile() {
                 "Excelente",
               ]}
               minLength={8}
-            /> */}
+            />
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
@@ -384,7 +588,7 @@ function RegisterMobile() {
                 </ButtonUnstyled>
               </div>
             </div>
-            {/* <PasswordStrengthBar
+            <PasswordStrengthBar
               password={cPassword}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -398,7 +602,7 @@ function RegisterMobile() {
               onChangeScore={(score, feedback) => {
                 setPasswdStrength(score);
               }}
-            /> */}
+            />
           </div>
         </div>
       </div>
@@ -408,7 +612,7 @@ function RegisterMobile() {
           className="inline-block px-5 py-3 rounded-3xl bg-red-600 hover:bg-red-800 uppercase text-center tracking-wider font-semibold text-sm text-white shadow-lg sm:text-base w-full"
           type="button"
           style={{ transition: "all .15s ease" }}
-          /* onClick={handleRegister} */
+          onClick={handleRegister}
         >
           Registrar
         </button>
