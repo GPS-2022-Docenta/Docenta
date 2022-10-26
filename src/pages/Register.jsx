@@ -49,7 +49,7 @@ function Register() {
                   * Campos obligatorios.
                 </p>
                 <br />
-                <RegisterWeb />
+                {/* <RegisterWeb /> */}
                 <RegisterMobile />
               </form>
             </div>
