@@ -9,11 +9,11 @@ import { countryList } from "../data/Countries";
 import PasswordStrengthBar from "react-password-strength-bar";
 import Swal from "sweetalert2";
 import axios from "axios";
-/* import dayjs from "dayjs";
- */ import "../css/loginStyles.css";
+import dayjs from "dayjs";
+import "../css/loginStyles.css";
 
-/* require("dayjs/locale/es");
-dayjs.locale("es"); */
+require("dayjs/locale/es");
+dayjs.locale("es");
 
 // URLs para manejo de datos en la BD
 const usersURL = "https://docenta-api.vercel.app/users/";
@@ -29,13 +29,13 @@ const regExpNickname = RegExp(
 ); */
 
 function RegisterMobile() {
-  /* const {
+  const {
     register,
     formState: { errors },
   } = useForm({
     mode: "all",
   });
- */
+
   const [users, setUsers] = useState([]);
   const genders = ["Hombre", "Mujer", "No binario", "Prefiero no decirlo"];
 
@@ -118,17 +118,17 @@ function RegisterMobile() {
     }
   };
 
-  /*   const formatBirthday = (birthday) => {
+  const formatBirthday = (birthday) => {
     setFormatBD(dayjs(birthday).format("YYYY-MM-DD"));
-  }; */
+  };
 
   // Extraer usuarios de la BD
   useEffect(() => {
-    /* const fetchUsers = async () => {
+    const fetchUsers = async () => {
       const { data } = await axios.get(usersURL);
       setUsers(data);
     };
-    fetchUsers(); */
+    fetchUsers();
   }, []);
 
   // Comprobar si hay campos vacíos
@@ -178,15 +178,15 @@ function RegisterMobile() {
   };
 
   const checkRegExpNickName = () => {
-    /* if (errors.nickName?.message === "Nombre de usuario no válido.") {
+    if (errors.nickName?.message === "Nombre de usuario no válido.") {
       return true;
     } else {
       return false;
-    } */
+    }
   };
 
   const checkNickNameLength = () => {
-    /* if (
+    if (
       errors.nickName?.message ===
         "El nombre debe tener al menos 8 caracteres." ||
       errors.nickName?.message ===
@@ -195,7 +195,7 @@ function RegisterMobile() {
       return true;
     } else {
       return false;
-    } */
+    }
   };
 
   const checkRegExpPhone = () => {
@@ -207,11 +207,11 @@ function RegisterMobile() {
   };
 
   const checkRegExpEmail = () => {
-    /* if (errors.email?.message === "Correo electrónico no válido.") {
+    if (errors.email?.message === "Correo electrónico no válido.") {
       return true;
     } else {
       return false;
-    } */
+    }
   };
 
   const checkRegExpPassword = () => {
@@ -222,7 +222,7 @@ function RegisterMobile() {
     }
   };
 
-  /* const handleRegister = async () => {
+  const handleRegister = async () => {
     if (checkNullForm()) {
       Swal.fire({
         title: "¡Error!",
@@ -324,7 +324,7 @@ function RegisterMobile() {
           }
         });
     }
-  }; */
+  };
 
   return (
     <>
@@ -344,9 +344,9 @@ function RegisterMobile() {
               style={{ transition: "all .15s ease" }}
               onChange={({ target }) => setFirstName(target.value)}
             />
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.firstName?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -363,9 +363,9 @@ function RegisterMobile() {
               style={{ transition: "all .15s ease" }}
               onChange={({ target }) => setLastName(target.value)}
             />
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.lastName?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -396,9 +396,9 @@ function RegisterMobile() {
               style={{ transition: "all .15s ease" }}
               onChange={({ target }) => setNickName(target.value)}
             />
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.nickName?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -421,9 +421,9 @@ function RegisterMobile() {
               style={{ transition: "all .15s ease" }}
               onChange={({ target }) => setEmail(target.value)}
             />
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.email?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -433,7 +433,7 @@ function RegisterMobile() {
               Fecha de nacimiento{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <DatePicker
+            <DatePicker
               value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
@@ -443,10 +443,10 @@ function RegisterMobile() {
               labelFormat="MMMM YYYY"
               inputFormat="DD-MM-YYYY"
               onDropdownClose={() => formatBirthday(birthday)}
-            /> */}
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            />
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.birthday?.message}
-            </p> */}
+            </p>
           </div>
         </div>
         <div>
@@ -458,17 +458,17 @@ function RegisterMobile() {
               País de residencia{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <Select
+            <Select
               searchable
               nothingFound="Sin opciones"
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
               onSelect={({ target }) => setCountry(target.value)}
-            /> */}
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            />
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.country?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -491,9 +491,9 @@ function RegisterMobile() {
               style={{ transition: "all .15s ease" }}
               onChange={({ target }) => setPhone(target.value)}
             />
-            {/* <p className="font-normal text-red-600 text-right text-sm ">
+            <p className="font-normal text-red-600 text-right text-sm ">
               {errors.phone?.message}
-            </p> */}
+            </p>
           </div>
           <div className="relative w-full mb-3">
             <label
@@ -502,12 +502,12 @@ function RegisterMobile() {
             >
               Género <span className="font-normal text-md text-red-600">*</span>
             </label>
-            {/* <Select
+            <Select
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
               onSelect={({ target }) => setGender(target.value)}
-            /> */}
+            />
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
@@ -524,24 +524,24 @@ function RegisterMobile() {
             </div>
             <div className="grid grid-cols-12">
               <div className="col-span-11 text-left mr-1">
-                {/* <input
+                <input
                   type={typePass}
                   className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                   placeholder="Introduce tu contraseña"
                   style={{ transition: "all .15s ease" }}
                   onChange={({ target }) => setPassword(target.value)}
-                /> */}
+                />
               </div>
               <div className="col-span-1 text-right">
-                {/* <ButtonUnstyled
+                <ButtonUnstyled
                   onClick={handleToggle}
                   className="border-b-2 px-auto py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 w-full"
                 >
                   <FontAwesomeIcon icon={iconPass} />
-                </ButtonUnstyled> */}
+                </ButtonUnstyled>
               </div>
             </div>
-            {/* <PasswordStrengthBar
+            <PasswordStrengthBar
               password={password}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -552,7 +552,7 @@ function RegisterMobile() {
                 "Excelente",
               ]}
               minLength={8}
-            /> */}
+            />
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
@@ -569,24 +569,24 @@ function RegisterMobile() {
             </div>
             <div className="grid grid-cols-12">
               <div className="col-span-11 text-left mr-1">
-                {/* <input
+                <input
                   type={typeCPass}
                   className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                   placeholder="Introduce tu contraseña"
                   style={{ transition: "all .15s ease" }}
                   onChange={({ target }) => setCPassword(target.value)}
-                /> */}
+                />
               </div>
               <div className="col-span-1 text-right">
-                {/* <ButtonUnstyled
+                <ButtonUnstyled
                   onClick={handleToggle2}
                   className="border-b-2 px-auto py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 w-full"
                 >
                   <FontAwesomeIcon icon={iconCPass} />
-                </ButtonUnstyled> */}
+                </ButtonUnstyled>
               </div>
             </div>
-            {/* <PasswordStrengthBar
+            <PasswordStrengthBar
               password={cPassword}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -600,7 +600,7 @@ function RegisterMobile() {
               onChangeScore={(score, feedback) => {
                 setPasswdStrength(score);
               }}
-            /> */}
+            />
           </div>
         </div>
       </div>
@@ -610,7 +610,7 @@ function RegisterMobile() {
           className="inline-block px-5 py-3 rounded-3xl bg-red-600 hover:bg-red-800 uppercase text-center tracking-wider font-semibold text-sm text-white shadow-lg sm:text-base w-full"
           type="button"
           style={{ transition: "all .15s ease" }}
-          /* onClick={handleRegister} */
+          onClick={handleRegister}
         >
           Registrar
         </button>
