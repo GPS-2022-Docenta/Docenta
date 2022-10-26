@@ -481,7 +481,7 @@ function RegisterMobile() {
             <input
               {...register("phone", {
                 pattern: {
-                  value: { regExpTlf },
+                  value: regExpTlf,
                   message: "Número de teléfono no válido (XXXYYYZZZ).",
                 },
               })}
