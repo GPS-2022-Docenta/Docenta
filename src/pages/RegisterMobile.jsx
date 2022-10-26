@@ -222,7 +222,7 @@ function RegisterMobile() {
     }
   };
 
-  const handleRegister = async () => {
+  /* const handleRegister = async () => {
     if (checkNullForm()) {
       Swal.fire({
         title: "¡Error!",
@@ -324,7 +324,7 @@ function RegisterMobile() {
           }
         });
     }
-  };
+  }; */
 
   return (
     <>
@@ -610,7 +610,7 @@ function RegisterMobile() {
           className="inline-block px-5 py-3 rounded-3xl bg-red-600 hover:bg-red-800 uppercase text-center tracking-wider font-semibold text-sm text-white shadow-lg sm:text-base w-full"
           type="button"
           style={{ transition: "all .15s ease" }}
-          onClick={handleRegister}
+          /* onClick={handleRegister} */
         >
           Registrar
         </button>
