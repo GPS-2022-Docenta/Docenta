@@ -10,7 +10,6 @@ import PasswordStrengthBar from "react-password-strength-bar";
 import Swal from "sweetalert2";
 import axios from "axios";
 import dayjs from "dayjs";
-import "../css/userFormStyles.css";
 
 require("dayjs/locale/es");
 dayjs.locale("es");

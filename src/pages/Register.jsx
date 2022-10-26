@@ -49,8 +49,12 @@ function Register() {
                   * Campos obligatorios.
                 </p>
                 <br />
-                <RegisterWeb />
-                <RegisterMobile />
+                <div className="hidden lg:block">
+                  <RegisterWeb />
+                </div>
+                <div className="block lg:hidden">
+                  <RegisterMobile />
+                </div>
               </form>
             </div>
           </div>

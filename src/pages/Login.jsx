@@ -90,7 +90,7 @@ function Login() {
   return (
     <>
       <main>
-        <div className=" absolute w-full lg:h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
+        <div className="absolute w-full min-h-full bg-slate-100 grid lg:grid-cols-2 2xl:grid-cols-6 select-none">
           <div className="hidden relative lg:block 2xl:col-span-4">
             <img
               className="absolute inset-0 w-full h-full object-cover object-center"
