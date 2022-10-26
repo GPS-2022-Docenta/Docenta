@@ -21,12 +21,12 @@ const registerURL = "https://docenta-api.vercel.app/register/";
 
 // Expresión regular para validar formato de correo electrónico
 const regExpMail = new RegExp("/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/");
-/* // Expresión regular para validar formato de teléfono
-const regExpTlf = new RegExp(/^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{3})$/); */
+// Expresión regular para validar formato de teléfono
+const regExpTlf = new RegExp(/^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{3})$/);
 // Expresión regular para validar formato de nombre de usuario
-const regExpNickname = new RegExp(
+/* const regExpNickname = new RegExp(
   "/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/"
-);
+); */
 
 function RegisterMobile() {
   const {
@@ -377,10 +377,10 @@ function RegisterMobile() {
             </label>
             <input
               {...register("nickName", {
-                pattern: {
+                /* pattern: {
                   value: regExpNickname,
                   message: "Nombre de usuario no válido.",
-                },
+                }, */
                 minLength: {
                   value: 3,
                   message: "El nombre debe tener al menos 8 caracteres.",
@@ -479,12 +479,12 @@ function RegisterMobile() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <input
-              /* {...register("phone", {
+              {...register("phone", {
                 pattern: {
                   value: { regExpTlf },
                   message: "Número de teléfono no válido (XXXYYYZZZ).",
                 },
-              })} */
+              })}
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
               placeholder="P.ej.: 666555444"
