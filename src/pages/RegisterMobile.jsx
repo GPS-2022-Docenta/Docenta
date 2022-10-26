@@ -376,10 +376,7 @@ function RegisterMobile() {
             </label>
             <input
               {...register("nickName", {
-                pattern: {
-                  value: regExpNickname,
-                  message: "Nombre de usuario no válido.",
-                },
+                pattern: regExpNickname,
                 minLength: {
                   value: 3,
                   message: "El nombre debe tener al menos 8 caracteres.",
@@ -409,10 +406,7 @@ function RegisterMobile() {
             </label>
             <input
               {...register("email", {
-                pattern: {
-                  value: regExpMail,
-                  message: "Correo electrónico no válido.",
-                },
+                pattern: regExpMail,
               })}
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
@@ -479,10 +473,7 @@ function RegisterMobile() {
             </label>
             <input
               {...register("phone", {
-                pattern: {
-                  value: regExpTlf,
-                  message: "Número de teléfono no válido (XXXYYYZZZ).",
-                },
+                pattern: regExpTlf,
               })}
               type="text"
               className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
