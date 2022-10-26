@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import "./App.css";
 
 import Home from "./pages/Home";
-/* import Login from "./pages/Login"; */
+import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPasswd from "./pages/ForgotPasswd";
 import RestorePasswd from "./pages/RestorePasswd";
@@ -19,7 +19,7 @@ function App() {
       </Helmet>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-passwd" element={<ForgotPasswd />} />
         <Route path="/restore-passwd" element={<RestorePasswd />} />

@@ -25,12 +25,12 @@ const usersURL = "https://docenta-api.vercel.app/users/";
 const registerURL = "https://docenta-api.vercel.app/register/";
 
 // Expresión regular para validar formato de correo electrónico
-const regExpMail = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/);
+const regExpMail = new RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/);
 // Expresión regular para validar formato de teléfono
-const regExpTlf = RegExp(/^\(?([0-9]{3})\)?([0-9]{3})([0-9]{3})$/);
+const regExpTlf = new RegExp(/^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{3})$/);
 // Expresión regular para validar formato de nombre de usuario
-const regExpNickname = RegExp(
-  /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
+const regExpNickname = new RegExp(
+  /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/
 );
 
 function RegisterWeb() {
@@ -443,15 +443,19 @@ function RegisterWeb() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <DatePicker
-              value={formatBD}
+              value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
               classNames={classes}
-              onChange={setFormatBD}
+              onChange={setBirthday}
               locale="es"
               labelFormat="MMMM YYYY"
-              inputFormat="DD/MM/YYYY"
+              inputFormat="DD-MM-YYYY"
+              onDropdownClose={() => formatBirthday(birthday)}
             />
+            <p className="font-normal text-red-600 text-right text-sm ">
+              {errors.birthday?.message}
+            </p>
           </div>
         </SwiperSlide>
         <SwiperSlide className="px-9">
