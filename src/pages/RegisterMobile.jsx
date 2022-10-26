@@ -124,11 +124,11 @@ function RegisterMobile() {
 
   // Extraer usuarios de la BD
   useEffect(() => {
-    const fetchUsers = async () => {
+    /* const fetchUsers = async () => {
       const { data } = await axios.get(usersURL);
       setUsers(data);
     };
-    fetchUsers();
+    fetchUsers(); */
   }, []);
 
   // Comprobar si hay campos vacíos
