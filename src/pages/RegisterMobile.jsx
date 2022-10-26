@@ -9,13 +9,13 @@ import { countryList } from "../data/Countries";
 import PasswordStrengthBar from "react-password-strength-bar";
 import Swal from "sweetalert2";
 import axios from "axios";
-/* import dayjs from "dayjs"; */
+import dayjs from "dayjs";
 import "../css/loginStyles.css";
 
-/* require("dayjs/locale/es");
-dayjs.locale("es"); */
+require("dayjs/locale/es");
+dayjs.locale("es");
 
-/* // URLs para manejo de datos en la BD
+// URLs para manejo de datos en la BD
 const usersURL = "https://docenta-api.vercel.app/users/";
 const registerURL = "https://docenta-api.vercel.app/register/";
 
@@ -26,7 +26,7 @@ const regExpTlf = RegExp(/^\(?([0-9]{3})\)?([0-9]{3})([0-9]{3})$/);
 // Expresión regular para validar formato de nombre de usuario
 const regExpNickname = RegExp(
   /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
-); */
+);
 
 function RegisterMobile() {
   /* const {
