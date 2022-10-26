@@ -433,7 +433,7 @@ function RegisterMobile() {
               Fecha de nacimiento{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <DatePicker
+            {/* <DatePicker
               value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
@@ -443,7 +443,7 @@ function RegisterMobile() {
               labelFormat="MMMM YYYY"
               inputFormat="DD-MM-YYYY"
               onDropdownClose={() => formatBirthday(birthday)}
-            />
+            /> */}
             <p className="font-normal text-red-600 text-right text-sm ">
               {errors.birthday?.message}
             </p>
@@ -458,14 +458,14 @@ function RegisterMobile() {
               País de residencia{" "}
               <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <Select
+            {/* <Select
               searchable
               nothingFound="Sin opciones"
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
               onSelect={({ target }) => setCountry(target.value)}
-            />
+            /> */}
             <p className="font-normal text-red-600 text-right text-sm ">
               {errors.country?.message}
             </p>
@@ -502,12 +502,12 @@ function RegisterMobile() {
             >
               Género <span className="font-normal text-md text-red-600">*</span>
             </label>
-            <Select
+            {/* <Select
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
               onSelect={({ target }) => setGender(target.value)}
-            />
+            /> */}
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
