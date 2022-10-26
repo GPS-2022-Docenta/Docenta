@@ -19,14 +19,14 @@ dayjs.locale("es"); */
 const usersURL = "https://docenta-api.vercel.app/users/";
 const registerURL = "https://docenta-api.vercel.app/register/";
 
-// Expresión regular para validar formato de correo electrónico
+/* // Expresión regular para validar formato de correo electrónico
 const regExpMail = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/);
 // Expresión regular para validar formato de teléfono
 const regExpTlf = RegExp(/^\(?([0-9]{3})\)?([0-9]{3})([0-9]{3})$/);
 // Expresión regular para validar formato de nombre de usuario
 const regExpNickname = RegExp(
   /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
-);
+); */
 
 function RegisterMobile() {
   /* const {
