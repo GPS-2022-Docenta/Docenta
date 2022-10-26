@@ -443,6 +443,7 @@ function RegisterWeb() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <DatePicker
+              dropdownPosition="bottom"
               value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
@@ -468,6 +469,7 @@ function RegisterWeb() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <Select
+              dropdownPosition="bottom"
               searchable
               nothingFound="Sin opciones"
               data={countryList}
@@ -509,6 +511,7 @@ function RegisterWeb() {
               Género <span className="font-normal text-md text-red-600">*</span>
             </label>
             <Select
+              dropdownPosition="bottom"
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
