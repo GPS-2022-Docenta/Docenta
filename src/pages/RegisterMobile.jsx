@@ -541,7 +541,7 @@ function RegisterMobile() {
                 </ButtonUnstyled>
               </div>
             </div>
-            <PasswordStrengthBar
+            {/* <PasswordStrengthBar
               password={password}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -552,7 +552,7 @@ function RegisterMobile() {
                 "Excelente",
               ]}
               minLength={8}
-            />
+            /> */}
           </div>
           <div className="relative w-full mb-3">
             <div className="grid lg:grid-cols-2 2xl:grid-cols-2">
@@ -586,7 +586,7 @@ function RegisterMobile() {
                 </ButtonUnstyled>
               </div>
             </div>
-            <PasswordStrengthBar
+            {/* <PasswordStrengthBar
               password={cPassword}
               shortScoreWord="Demasiado corta"
               scoreWords={[
@@ -600,7 +600,7 @@ function RegisterMobile() {
               onChangeScore={(score, feedback) => {
                 setPasswdStrength(score);
               }}
-            />
+            /> */}
           </div>
         </div>
       </div>
