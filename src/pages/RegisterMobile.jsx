@@ -12,8 +12,8 @@ import axios from "axios";
 import dayjs from "dayjs";
 import "../css/loginStyles.css";
 
-require("dayjs/locale/es");
-dayjs.locale("es");
+/* require("dayjs/locale/es");
+dayjs.locale("es"); */
 
 // URLs para manejo de datos en la BD
 const usersURL = "https://docenta-api.vercel.app/users/";
