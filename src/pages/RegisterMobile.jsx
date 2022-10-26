@@ -21,12 +21,12 @@ const registerURL = "https://docenta-api.vercel.app/register/";
 
 // Expresión regular para validar formato de correo electrónico
 const regExpMail = new RegExp("/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/");
-// Expresión regular para validar formato de teléfono
-/* const regExpTlf = new RegExp(/^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{3})$/);
+/* // Expresión regular para validar formato de teléfono
+const regExpTlf = new RegExp(/^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{3})$/); */
 // Expresión regular para validar formato de nombre de usuario
 const regExpNickname = new RegExp(
   "/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/"
-); */
+);
 
 function RegisterMobile() {
   const {
@@ -377,10 +377,10 @@ function RegisterMobile() {
             </label>
             <input
               {...register("nickName", {
-                /* pattern: {
-                  value: { regExpNickname },
+                pattern: {
+                  value: regExpNickname,
                   message: "Nombre de usuario no válido.",
-                }, */
+                },
                 minLength: {
                   value: 3,
                   message: "El nombre debe tener al menos 8 caracteres.",
