@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "../css/loginStyles.css";
+import "../css/userFormStyles.css";
 import loginImage from "../images/login.png";
 import docentaLogo from "../images/docenta_logo.png";
 

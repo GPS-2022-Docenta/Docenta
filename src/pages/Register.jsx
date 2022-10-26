@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../css/loginStyles.css";
+import "../css/userFormStyles.css";
 import loginImage from "../images/login.png";
 import docentaLogo from "../images/docenta_logo.png";
 import RegisterWeb from "./RegisterWeb";
@@ -24,15 +24,15 @@ function Register() {
           <div className="flex flex-wrap justify-center content-center w-full px-8 md:px-16 py-12 max-w-md mx-auto sm:max-w-xl lg:px-12 lg:py-12 lg:max-w-full bg-slate-100 2xl:col-span-2">
             <div className="xl:max-w-xl w-full">
               <img
-                className="flex flex-wrap text-left w-40 lg:w-60 lg:ml-9 mr-9"
+                className="flex flex-wrap text-left w-40 lg:w-60"
                 src={docentaLogo}
                 alt="Hombre en ordenador"
               />
-              <h1 className="mt-6 text-2xl font-medium font-style text-gray-900 sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl lg:ml-9 mr-9">
+              <h1 className="mt-6 text-2xl font-medium font-style text-gray-900 sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl">
                 Registrar
                 <br className="hidden lg:inline" />
               </h1>
-              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-light lg:ml-9 mr-9 w-fit">
+              <p className="mt-2 text-gray-600 sm:mt-4 sm:text-xl font-light">
                 ¿Ya tienes una cuenta? <br className="inline lg:hidden" />
                 <Link
                   className="text-red-600 hover:text-emerald-600"
@@ -44,8 +44,8 @@ function Register() {
                 .
               </p>
               <br />
-              <form>
-                <p className="lg:ml-9 mr-9 font-normal text-red-600 text-left text-sm">
+              <form autoComplete="off">
+                <p className="font-normal text-red-600 text-left text-sm">
                   * Campos obligatorios.
                 </p>
                 <br />

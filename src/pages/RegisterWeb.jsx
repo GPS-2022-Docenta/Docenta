@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
 import { useForm } from "react-hook-form";
 import { ButtonUnstyled } from "@mui/base";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,10 +10,11 @@ import PasswordStrengthBar from "react-password-strength-bar";
 import Swal from "sweetalert2";
 import axios from "axios";
 import dayjs from "dayjs";
+import "boxicons";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../css/loginStyles.css";
+import "../css/userFormStyles.css";
 
 require("dayjs/locale/es");
 dayjs.locale("es");
@@ -49,7 +48,6 @@ function RegisterWeb() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [formatBD, setFormatBD] = useState("");
   const [country, setCountry] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
@@ -57,10 +55,14 @@ function RegisterWeb() {
   const [cPassword, setCPassword] = useState("");
   const [passwdStrength, setPasswdStrength] = useState("");
 
+  const [visibilityReg1, setVisibilityReg1] = useState("block");
+  const [visibilityReg2, setVisibilityReg2] = useState("hidden");
+
   const [typePass, setTypePass] = useState("password");
   const [typeCPass, setTypeCPass] = useState("password");
   const [iconPass, setIconPass] = useState(faEyeSlash);
   const [iconCPass, setIconCPass] = useState(faEyeSlash);
+  const [iconLoad, setIconLoad] = useState("center");
 
   // Estilo para el input del calendario
   const useStyles = createStyles((theme) => ({
@@ -101,6 +103,34 @@ function RegisterWeb() {
 
   const { classes } = useStyles();
 
+  // Cambiar paneles de registro
+  const handleToggleReg = () => {
+    if (visibilityReg1 === "block" && visibilityReg2 === "hidden") {
+      setVisibilityReg1("slide-top-panel1");
+      setVisibilityReg2("slide-top-panel2");
+    } else if (
+      visibilityReg1 === "slide-top-panel1" &&
+      visibilityReg2 === "slide-top-panel2"
+    ) {
+      setVisibilityReg1("slide-bottom-panel1");
+      setVisibilityReg2("slide-bottom-panel2");
+    } else {
+      setVisibilityReg1("slide-top-panel1");
+      setVisibilityReg2("slide-top-panel2");
+    }
+  };
+
+  // Cambia de orientación el botón de cambiar panel
+  const handleRotateButton = () => {
+    if (iconLoad === "rotate-down") {
+      setIconLoad("rotate-up");
+      handleToggleReg();
+    } else {
+      setIconLoad("rotate-down");
+      handleToggleReg();
+    }
+  };
+
   // Mostrar contraseña
   const handleToggle = () => {
     if (typePass === "password") {
@@ -121,10 +151,6 @@ function RegisterWeb() {
       setIconCPass(faEyeSlash);
       setTypeCPass("password");
     }
-  };
-
-  const formatBirthday = (birthday) => {
-    setFormatBD(dayjs(birthday).format("YYYY-MM-DD"));
   };
 
   // Extraer usuarios de la BD
@@ -309,7 +335,7 @@ function RegisterWeb() {
           email: email,
           password: password,
           phone: phone,
-          birthday: formatBD,
+          birthday: birthday,
           country: country,
           gender: gender,
         })
@@ -333,12 +359,8 @@ function RegisterWeb() {
 
   return (
     <>
-      <Swiper
-        className="hidden lg:block"
-        navigation={true}
-        modules={[Navigation]}
-      >
-        <SwiperSlide className="px-9">
+      <div className="container overflow-y-hidden">
+        <div className={`${visibilityReg1} pt-2 pb-2 mb-16`}>
           <div className="relative w-full mb-3">
             <label
               className="block uppercase text-gray-700 text-xs font-semibold mb-2"
@@ -443,7 +465,7 @@ function RegisterWeb() {
               <span className="font-normal text-md text-red-600">*</span>
             </label>
             <DatePicker
-              dropdownPosition="bottom"
+              dropdownPosition="top"
               value={birthday}
               placeholder="¿Qué día naciste?"
               clearable={false}
@@ -452,14 +474,13 @@ function RegisterWeb() {
               locale="es"
               labelFormat="MMMM YYYY"
               inputFormat="DD-MM-YYYY"
-              onDropdownClose={() => formatBirthday(birthday)}
             />
             <p className="font-normal text-red-600 text-right text-sm ">
               {errors.birthday?.message}
             </p>
           </div>
-        </SwiperSlide>
-        <SwiperSlide className="px-9">
+        </div>
+        <div className={`${visibilityReg2} overflow-x-hidden`}>
           <div className="relative w-full mb-3">
             <label
               className="block uppercase text-gray-700 text-xs font-semibold mb-2"
@@ -475,7 +496,7 @@ function RegisterWeb() {
               data={countryList}
               placeholder="Selecciona un país de la lista"
               classNames={classes}
-              onSelect={(e) => setCountry(e.target.value)}
+              onSelect={({ target }) => setCountry(target.value)}
             />
           </div>
           <div className="relative w-full mb-3">
@@ -515,7 +536,7 @@ function RegisterWeb() {
               data={genders}
               placeholder="Selecciona un género de la lista"
               classNames={classes}
-              onSelect={(e) => setGender(e.target.value)}
+              onSelect={({ target }) => setGender(target.value)}
             />
           </div>
           <div className="relative w-full mb-3">
@@ -611,8 +632,23 @@ function RegisterWeb() {
               }}
             />
           </div>
-        </SwiperSlide>
-      </Swiper>
+        </div>
+      </div>
+      <div className="hidden lg:block mt-4 sm:mt-4 px-20 text-center">
+        <button
+          className={`${iconLoad}`}
+          type="button"
+          style={{ transition: "all .15s ease" }}
+          onClick={handleRotateButton}
+        >
+          <box-icon
+            color="red"
+            size="lg"
+            name="chevron-down"
+            type="solid"
+          ></box-icon>
+        </button>
+      </div>
       <div className="hidden lg:block mt-4 sm:mt-4 px-9">
         <button
           className="inline-block px-5 py-3 rounded-3xl bg-red-600 hover:bg-red-800 uppercase text-center tracking-wider font-semibold text-sm text-white shadow-lg sm:text-base w-full"

@@ -1,24 +1,77 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-
-/* import Navbar from "../components/Navbar";
-import Footer from "../components/Footer"; */
 import loginImage from "../images/login.png";
 import docentaLogo from "../images/docenta_logo.png";
+import axios from "axios";
 
-import "../css/loginStyles.css";
+import "../css/userFormStyles.css";
+
+// URLs para manejo de datos en la BD
+const usersURL = "https://docenta-api.vercel.app/users/";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [users, setUsers] = useState([]);
+
+  // Extraer usuarios de la BD
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const { data } = await axios.get(usersURL);
+      setUsers(data);
+    };
+    fetchUsers();
+  }, []);
+
   // Función para desplegar pop-up de recuperación de contraseña
   const handleForgot = () => {
-    Swal.fire({
-      title: "¡Éxito!",
-      text: "Se ha enviado un enlace a de recuperación de contraseña. Revisa tu bandeja del correo electrónico para acceder a él.",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 5000,
-    });
+    if (checkNullForm()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Los campos no pueden estar vacíos.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (!checkEmail()) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "El correo introducido no está asociado a ninguna cuenta.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else {
+      Swal.fire({
+        title: "¡Éxito!",
+        text: "Se ha enviado un enlace a de recuperación de contraseña. Revisa tu bandeja del correo electrónico para acceder a él.",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 5000,
+      }).then(() => {
+        setTimeout(() => {
+          window.location.replace("/login");
+        }, 1000);
+      });
+    }
+  };
+
+  // Comprobar si hay campos vacíos
+  const checkNullForm = () => {
+    if (email === "") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  // Comprobar correo electrónico existente
+  const checkEmail = () => {
+    if (users.find((elem) => elem.email === email)) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -67,6 +120,7 @@ function Login() {
                     className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu correo electrónico"
                     style={{ transition: "all .15s ease" }}
+                    onChange={({ target }) => setEmail(target.value)}
                   />
                 </div>
                 <div className="mt-4 sm:mt-6">

@@ -1,13 +1,10 @@
 import React from "react";
 /* import { Link } from "react-router-dom"; */
 import Swal from "sweetalert2";
-
-/* import Navbar from "../components/Navbar";
-import Footer from "../components/Footer"; */
 import loginImage from "../images/login.png";
 import docentaLogo from "../images/docenta_logo.png";
 
-import "../css/loginStyles.css";
+import "../css/userFormStyles.css";
 
 function Login() {
   // Función para desplegar pop-up de recuperación de contraseña
