@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/homeStyles.css";
 import Navbar from "../components/Navbar.jsx";
-import "boxicons";
 
 export default function Login() {
   return (

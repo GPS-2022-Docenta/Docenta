@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ButtonUnstyled } from "@mui/base";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faEyeSlash,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { DatePicker } from "@mantine/dates";
 import { createStyles, Select } from "@mantine/core";
 import { countryList } from "../data/Countries";
@@ -10,7 +14,6 @@ import PasswordStrengthBar from "react-password-strength-bar";
 import Swal from "sweetalert2";
 import axios from "axios";
 import dayjs from "dayjs";
-import "boxicons";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -641,12 +644,7 @@ function RegisterWeb() {
           style={{ transition: "all .15s ease" }}
           onClick={handleRotateButton}
         >
-          <box-icon
-            color="red"
-            size="lg"
-            name="chevron-down"
-            type="solid"
-          ></box-icon>
+          <FontAwesomeIcon color="red" size="2xl" icon={faChevronDown} />
         </button>
       </div>
       <div className="hidden lg:block mt-4 sm:mt-4 px-9">
