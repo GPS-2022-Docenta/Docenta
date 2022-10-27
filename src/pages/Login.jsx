@@ -100,11 +100,13 @@ function Login() {
           </div>
           <div className="flex flex-wrap justify-center content-center w-full px-8 md:px-16 py-12 max-w-md mx-auto sm:max-w-xl lg:px-12 lg:py-24 lg:max-w-full 2xl:col-span-2">
             <div className="xl:max-w-xl w-full">
-              <img
-                className="flex flex-wrap text-left w-40 lg:w-60"
-                src={docentaLogo}
-                alt="Hombre en ordenador"
-              />
+              <Link to="/">
+                <img
+                  className="flex flex-wrap text-left w-40 lg:w-60"
+                  src={docentaLogo}
+                  alt="Hombre en ordenador"
+                />
+              </Link>
               <h1 className="mt-6 text-2xl font-medium font-style text-gray-900 sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl">
                 Iniciar sesión
                 <br className="hidden lg:inline" />

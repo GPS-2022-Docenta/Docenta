@@ -8,25 +8,25 @@ const usersURL = "https://docenta-api.vercel.app/users/";
 function Profile() {
   const loadNickName = sessionStorage.getItem("nickName");
   const [firstName, setFirstName] = useState("");
-  const [nickName, setNickName] = useState("");
+  /*   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [tlf, setTlf] = useState("");
   const [lastName, setLastName] = useState("");
   const [country, setCountry] = useState("");
   const [gender, setGender] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [birthday, setBirthday] = useState(""); */
 
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await axios.get(usersURL + loadNickName);
       setFirstName(data[0].firstName);
-      setEmail(data[0].email);
+      /*       setEmail(data[0].email);
       setTlf(data[0].phone);
       setNickName(data[0].nickName);
       setLastName(data[0].lastName);
       setBirthday(data[0].birthday);
       setCountry(data[0].country);
-      setGender(data[0].gender);
+      setGender(data[0].gender); */
     };
     fetchUser();
   }, [loadNickName]);

@@ -37,7 +37,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(220.55deg, #ff8570 0%, #418cb7 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,6 @@
   font-weight: 400;
   color: white;
 }
-
 /* 
 form {
   display: flex;

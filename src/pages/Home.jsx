@@ -1,26 +1,19 @@
 import React from "react";
-//import "../css/home.css";
+import "../css/homeStyles.css";
+import Navbar from "../components/Navbar.jsx";
+import "boxicons";
 
-function Home() {
+export default function Login() {
   return (
-    <div className="App-header">
-      <h1>Home</h1>
-      <h2>Welcome back student!</h2>
-      <div className="text">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
-      </div>
-    </div>
+    <>
+      <Navbar transparent />
+      <main>
+        <div className="home-container absolute w-full h-full flex flex-wrap flex-col text-center content-center justify-center text-white">
+          <h1 className="fade-in text-3xl lg:text-5xl font-semibold">
+            Bienvenido a Docenta
+          </h1>
+        </div>
+      </main>
+    </>
   );
 }
-
-export default Home;
