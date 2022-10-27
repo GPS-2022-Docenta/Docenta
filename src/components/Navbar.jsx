@@ -22,13 +22,13 @@ function Navbar() {
                 </div>
               </div>
             </Link>
-            <button
+            <Link
               className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
               to="/login"
             >
               <FontAwesomeIcon color="white" icon={faUser} />
-            </button>
+            </Link>
           </div>
           <div className="text-right">
             <div className="lg:flex flex-grow items-stretch lg:mt-5 bg-slate-100 lg:bg-transparent lg:shadow-none hidden">
