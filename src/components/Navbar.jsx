@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import docentaLogo from "../images/docenta_logo_sm.png";
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
+  const Links = [
+    { name: "Servicios", link: "/" },
+    { name: "Contacto", link: "/" },
+    { name: "FAQ", link: "/" },
+    { name: "Entrar", link: "/login" },
+  ];
+
   return (
     <>
-      <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 ">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+      <nav className="max-lg:shadow-md w-full fixed top-0 left-0">
+        <div className="md:flex items-center justify-between max-lg:bg-white py-4 md:px-10 px-7">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start my-3">
             <Link to="/" className="flex gap-2 lg:mt-5 lg:mr-16 text-left">
-              <div className="flex-none w-9 lg:w-12 py-1 ml-3">
+              <div className="flex-none  w-9 lg:w-12 lg:py-1 ml-4">
                 <img src={docentaLogo} alt="logo" />
               </div>
               <div className="flex-col lg:flex-row">
@@ -22,28 +30,49 @@ function Navbar() {
                 </div>
               </div>
             </Link>
-            <Link
-              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            <button
+              className={`cursor-pointer ${
+                open ? "mr-1" : ""
+              } text-xl leading-none px-3 lg:py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none`}
               type="button"
-              to="/login"
+              onClick={() => setOpen(!open)}
             >
-              <FontAwesomeIcon color="white" icon={faUser} />
-            </Link>
+              <FontAwesomeIcon
+                color="orange"
+                icon={open ? faClose : faBars}
+                size="xl"
+              />
+            </button>
           </div>
-          <div className="text-right">
-            <div className="lg:flex flex-grow items-stretch lg:mt-5 bg-slate-100 lg:bg-transparent lg:shadow-none hidden">
-              <ul className="flex flex-col lg:flex-row list-none mr-auto">
-                <li className="flex items-center">
-                  <Link
-                    to="/login"
-                    className="hover:text-rose-800 text-gray-700 px-2 lg:text-white text-sm lg:text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-                  >
-                    Entrar
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
+          <div
+            onClick={() => setOpen(!open)}
+            className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
+          >
+            <ion-icon name={open ? "close" : "menu"}></ion-icon>
           </div>
+
+          <ul
+            className={`lg:flex lg:items-center lg:pb-0 pb-auto absolute lg:static max-lg:bg-white lg:z-auto z-[-1] left-0 w-full lg:w-auto lg:pl-0 pl-9 transition-all duration-500 ease-in ${
+              open
+                ? "top-20 opacity-100"
+                : "top-[-490px] lg:opacity-100 opacity-0"
+            }`}
+          >
+            {Links.map((link) => (
+              <li
+                key={link.name}
+                className="flex items-center md:ml-8 md:my-0 my-3"
+              >
+                <Link
+                  to={link.link}
+                  className="hover:text-rose-800 duration-300 text-gray-700 px-2 lg:text-white text-sm lg:text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </nav>
     </>
