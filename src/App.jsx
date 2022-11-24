@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Catalog from "./pages/Catalog";
 import ForgotPasswd from "./pages/ForgotPasswd";
 import RestorePasswd from "./pages/RestorePasswd";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/forgot-passwd" element={<ForgotPasswd />} />
         <Route path="/restore-passwd" element={<RestorePasswd />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/catalog" element={<Catalog />} />
         <Route path="/profile-settings" element="" />
       </Routes>
     </>
