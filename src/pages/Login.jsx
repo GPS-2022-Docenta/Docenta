@@ -132,6 +132,7 @@ function Login() {
                     Nombre de usuario
                   </label>
                   <input
+                    name="nickname"
                     type="text"
                     className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu nombre de usuario"
@@ -154,6 +155,7 @@ function Login() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11 text-left mr-1">
                       <input
+                        name="password"
                         type={type}
                         className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                         placeholder="Introduce tu contraseña"

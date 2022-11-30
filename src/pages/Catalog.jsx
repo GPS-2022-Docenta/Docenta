@@ -6,7 +6,7 @@ import NavbarCatalog from "../components/NavbarCatalog";
 // URLs para manejo de datos en la BD
 const coursesURL = "https://docenta-api.vercel.app/courses";
 
-function Profile() {
+function Catalog() {
   const [course, setCourse] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -48,7 +48,10 @@ function Profile() {
 
       return (
         <>
-          <div className="max-w-xs h-fit hover:scale-105 duration-200 overflow-hidden bg-white rounded-lg my-2 shadow-lg dark:bg-gray-800">
+          <div
+            data-test="course-card"
+            className="max-w-xs h-fit hover:scale-105 duration-200 overflow-hidden bg-white rounded-lg my-2 shadow-lg dark:bg-gray-800"
+          >
             <div className="px-4 py-2">
               <h1 className="text-3xl h-28 text-ellipsis overflow-clip font-bold text-gray-800 uppercase dark:text-white">
                 {nombre}
@@ -104,6 +107,7 @@ function Profile() {
                   </svg>
                 </div>
                 <input
+                  name="searchBar"
                   type="search"
                   id="search"
                   className="block w-80 p-3 pl-10 text-lg text-gray-800 rounded-lg bg-slate-100 hover:bg-slate-300 shadow-sm shadow-red-800 focus:outline-none focus:bg-slate-300 hover:placeholder-gray-500 placeholder-gray-500 placeholder:italic"
@@ -125,4 +129,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Catalog;

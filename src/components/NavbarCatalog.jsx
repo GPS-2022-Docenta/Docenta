@@ -8,7 +8,7 @@ function NavbarCatalog() {
   const [open, setOpen] = useState(false);
   const Links = [
     { name: "Catálogo", link: "/catalog" },
-    { name: "Favoritos", link: "/favoritos" },
+    { name: "Favoritos", link: "/" },
     { name: "Perfil", link: "/profile" },
   ];
 

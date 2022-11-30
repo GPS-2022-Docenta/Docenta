@@ -10,7 +10,7 @@ import "../css/userFormStyles.css";
 // URLs para manejo de datos en la BD
 const usersURL = "https://docenta-api.vercel.app/users/";
 
-function Login() {
+function ForgotPasswd() {
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
 
@@ -155,4 +155,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPasswd;

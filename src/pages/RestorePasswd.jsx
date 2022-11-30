@@ -6,7 +6,7 @@ import docentaLogo from "../images/docenta_logo.png";
 
 import "../css/userFormStyles.css";
 
-function Login() {
+function RestorePasswd() {
   const [password, setPassword] = useState("");
   const [cPassword, setCPassword] = useState("");
 
@@ -126,4 +126,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default RestorePasswd;
