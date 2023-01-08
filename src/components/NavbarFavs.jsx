@@ -8,7 +8,7 @@ function NavbarFavs() {
   const [open, setOpen] = useState(false);
   const Links = [
     { name: "Catálogo", link: "/catalog" },
-    { name: "Favoritos", link: "/favoritos" },
+    { name: "Favoritos", link: "/favorites" },
     { name: "Perfil", link: "/profile" },
   ];
 
@@ -55,7 +55,7 @@ function NavbarFavs() {
                 <Link
                   to={link.link}
                   className={`${
-                    link.name === "Catálogo"
+                    link.name === "Favoritos"
                       ? "text-red-800 font-extrabold italic"
                       : "text-slate-800"
                   } hover:text-rose-800 duration-300 px-2 text-md lg:text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase`}

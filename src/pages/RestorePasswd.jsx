@@ -83,6 +83,7 @@ function RestorePasswd() {
                     Nueva contraseña
                   </label>
                   <input
+                    name="password"
                     type="password"
                     className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu contraseña"
@@ -99,6 +100,7 @@ function RestorePasswd() {
                     Confirmar contraseña
                   </label>
                   <input
+                    name="cpassword"
                     type="password"
                     className="border-b-2 px-3 py-3 font-light placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-0 focus:border-red-500 w-full"
                     placeholder="Introduce tu contraseña"

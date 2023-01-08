@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/catalog.css";
-import NavbarCatalog from "../components/NavbarCatalog";
+import NavbarFavs from "../components/NavbarFavs";
 import Loading from "../components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
-import { Menu, Button, Text } from "@mantine/core";
+import { Menu, Button } from "@mantine/core";
 import {
   IconTypography,
   IconUser,
@@ -16,15 +16,18 @@ import {
 
 // URLs para manejo de datos en la BD
 const coursesURL = "https://docenta-api.vercel.app/courses";
-const addFavCoursesURL = "https://docenta-api.vercel.app/addFavCourse/";
+const favCoursesURL = "https://docenta-api.vercel.app/favoritos/";
+const delFavCourseURL = "https://docenta-api.vercel.app/delFavCourse/";
 
-function Catalog() {
+function Favorites() {
   const coursesPerPage = 20;
   const [course, setCourse] = useState([]);
+  const [favCourse, setFavCourse] = useState([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [paginate, setPaginate] = useState(coursesPerPage);
   const [order, setOrder] = useState("Default");
+  const [matchingCourses, setMatchingCourses] = useState([]);
 
   const loadUserName = sessionStorage.getItem("nickName");
 
@@ -33,13 +36,41 @@ function Catalog() {
     setQuery(e.target.value);
   };
 
+  // Descargar datos a través de la API de CoinGecko
+  // + Obtener monedas favoritas a travñes de la API de Cryptoaholic
+  // + Buscar valores correspondientes de monedas en ambos arrays.
+  const fetchCourses = async () => {
+    // Variables temporales que se actualizan en el mismo render
+    // (a diferencia del hook useState).
+    let getCourse = [];
+    let getFavCourse = [];
+    // Obtener monedas de la base de datos de CoinGecko
+    await axios
+      .get(coursesURL)
+      .then((response) => {
+        getCourse = response.data;
+        setCourse(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+    // Obtener monedas favoritas de la base de datos de Cryptoaholic.
+    await axios
+      .get(favCoursesURL + loadUserName)
+      .then((response) => {
+        getFavCourse = response.data;
+        setFavCourse(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+    // Buscar valores correspondientes de monedas en un array y otro.
+    const matching = getCourse.filter((o1) =>
+      getFavCourse.some((o2) => o1.id === o2.id)
+    );
+    setMatchingCourses(matching);
+  };
+
   useEffect(() => {
-    const fetchCourse = async () => {
-      const { data } = await axios.get(coursesURL);
-      setCourse(data);
-    };
-    fetchCourse();
+    fetchCourses();
     setTimeout(() => setLoading(false), 1500);
+    //eslint-disable-next-line
   }, []);
 
   // Función para cargar más cursos
@@ -62,7 +93,7 @@ function Catalog() {
     if (order === "Nombre" || order === "Autor" || order === "Plataforma") {
       setOrder("Default");
       setCourse(
-        course.sort((a, b) => {
+        matchingCourses.sort((a, b) => {
           return a.id - b.id;
         })
       );
@@ -76,7 +107,7 @@ function Catalog() {
     if (order === "Default" || order === "Autor" || order === "Plataforma") {
       setOrder("Nombre");
       setCourse(
-        course.sort((a, b) =>
+        matchingCourses.sort((a, b) =>
           a.nombre.toLowerCase() > b.nombre.toLowerCase() ? 1 : -1
         )
       );
@@ -90,7 +121,7 @@ function Catalog() {
     if (order === "Default" || order === "Nombre" || order === "Plataforma") {
       setOrder("Autor");
       setCourse(
-        course.sort((a, b) =>
+        matchingCourses.sort((a, b) =>
           a.autor.toLowerCase() > b.autor.toLowerCase() ? 1 : -1
         )
       );
@@ -104,7 +135,7 @@ function Catalog() {
     if (order === "Default" || order === "Nombre" || order === "Autor") {
       setOrder("Plataforma");
       setCourse(
-        course.sort((a, b) =>
+        matchingCourses.sort((a, b) =>
           a.plataforma.toLowerCase() > b.plataforma.toLowerCase() ? 1 : -1
         )
       );
@@ -113,23 +144,20 @@ function Catalog() {
     }
   };
 
-  const handleAddFav = async (course) => {
+  const handleDelFav = async (course) => {
     console.log(course);
     console.log(loadUserName);
     await axios
-      .post(addFavCoursesURL, {
-        nickName: loadUserName,
-        id: course.id,
-      })
+      .delete(delFavCourseURL + loadUserName + "/" + course.id)
       .then(() => {
-        console.error("Curso añadido con éxito!");
+        fetchCourses();
       })
       .catch((error) => {
         console.error("Ha habido un error!", error);
       });
   };
 
-  const displayCourses = course
+  const displayCourses = matchingCourses
     .filter((value) => {
       if (query === "") {
         return value;
@@ -181,9 +209,9 @@ function Catalog() {
               <h1 className="text-lg font-bold text-white">{plataforma}</h1>
               <button
                 className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-amber-700 hover:text-slate-100 focus:bg-gray-400 focus:outline-none"
-                onClick={() => handleAddFav(course)}
+                onClick={() => handleDelFav(course)}
               >
-                Añadir
+                Eliminar
               </button>
             </div>
           </div>
@@ -195,7 +223,7 @@ function Catalog() {
     <>
       {loading === false ? (
         <main>
-          <NavbarCatalog />
+          <NavbarFavs />
           <div id="top-index" className="App-header">
             <div className="absolute top-20 lg:top-28">
               <h1 className="text-4xl lg:text-6xl text-center font-semibold mt-10">
@@ -312,4 +340,4 @@ function Catalog() {
   );
 }
 
-export default Catalog;
+export default Favorites;

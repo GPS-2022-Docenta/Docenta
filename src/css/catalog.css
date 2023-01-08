@@ -1,3 +1,27 @@
 .bg-secondary {
   background-color: rgb(45 27 21 / var(--tw-bg-opacity));
 }
+
+.catalog-container {
+  user-select: none;
+  background: linear-gradient(220.55deg, #ff8570 0%, #418cb7 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.spinner {
+  position: relative;
+  padding-top: 10px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

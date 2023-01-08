@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Catalog from "./pages/Catalog";
+import Favorites from "./pages/Favorites";
 import ForgotPasswd from "./pages/ForgotPasswd";
 import RestorePasswd from "./pages/RestorePasswd";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/restore-passwd" element={<RestorePasswd />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/profile-settings" element="" />
       </Routes>
     </>
