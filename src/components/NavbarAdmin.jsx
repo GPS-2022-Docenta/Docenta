@@ -4,14 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import docentaLogo from "../images/docenta_logo_sm.png";
 
-function NavbarCatalog() {
+function NavbarAdmin() {
   const loadLogin = sessionStorage.getItem("loggedIn");
 
   const [open, setOpen] = useState(false);
   const Links = [
-    { name: "Catálogo", link: "/catalog" },
-    { name: "Favoritos", link: "/favorites" },
-    { name: "Perfil", link: "/profile" },
+    { name: "Administración", link: "/management" },
+    { name: "Perfil", link: "/admin" },
   ];
 
   return (
@@ -62,7 +61,7 @@ function NavbarCatalog() {
                 <Link
                   to={link.link}
                   className={`${
-                    link.name === "Catálogo"
+                    link.name === "Perfil"
                       ? "text-red-800 font-extrabold italic"
                       : "text-slate-800"
                   } hover:text-rose-800 duration-300 px-2 text-md lg:text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase`}
@@ -78,4 +77,4 @@ function NavbarCatalog() {
   );
 }
 
-export default NavbarCatalog;
+export default NavbarAdmin;

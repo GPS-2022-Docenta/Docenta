@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import "../css/catalog.css";
-import NavbarCatalog from "../components/NavbarCatalog";
 import Loading from "../components/Loader";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -17,13 +17,15 @@ import {
   IconWorld,
   IconSortAscending,
   IconArrowBackUp,
+  IconNewSection,
 } from "@tabler/icons";
+import NavbarManagement from "../components/NavbarManagement";
 
 // URLs para manejo de datos en la BD
 const coursesURL = "https://docenta-api.vercel.app/courses";
-const addFavCoursesURL = "https://docenta-api.vercel.app/addFavCourse/";
+const delCoursesURL = "https://docenta-api.vercel.app/deleteCurso/";
 
-function Catalog() {
+function ContentManagement() {
   const coursesPerPage = 20;
   const [course, setCourse] = useState([]);
   const [query, setQuery] = useState("");
@@ -41,11 +43,12 @@ function Catalog() {
     setQuery(e.target.value);
   };
 
+  const fetchCourse = async () => {
+    const { data } = await axios.get(coursesURL);
+    setCourse(data);
+  };
+
   useEffect(() => {
-    const fetchCourse = async () => {
-      const { data } = await axios.get(coursesURL);
-      setCourse(data);
-    };
     fetchCourse();
     setTimeout(() => setLoading(false), 1500);
   }, []);
@@ -121,18 +124,33 @@ function Catalog() {
     }
   };
 
-  const handleAddFav = async (course) => {
-    await axios
-      .post(addFavCoursesURL, {
-        nickName: loadUserName,
-        id: course.id,
-      })
-      .then(() => {
-        console.error("Curso añadido con éxito!");
-      })
-      .catch((error) => {
-        console.error("Ha habido un error!", error);
-      });
+  const handleAddCourse = () => {
+    window.location.replace("/add-course");
+  };
+
+  const handleDelCourse = async (course) => {
+    Swal.fire({
+      title: "¿Deseas eliminar el curso?",
+      text: "¡Los cambios serán irreversibles!",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, ¡elimínalo!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(delCoursesURL + course.id);
+        Swal.fire({
+          title: "¡Éxito!",
+          text: "El curso se ha eliminado correctamente.",
+          icon: "success",
+          timer: 1000,
+        }).then(() => {
+          fetchCourse();
+        });
+      }
+    });
   };
 
   const displayCourses = course
@@ -162,7 +180,6 @@ function Catalog() {
       return (
         <>
           <div
-            key={id}
             data-test="course-card"
             className="max-w-xs h-94 hover:scale-105 duration-200 overflow-hidden bg-white rounded-lg my-2 shadow-lg dark:bg-gray-800"
           >
@@ -186,12 +203,12 @@ function Catalog() {
 
             <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
               <h1 className="text-lg font-bold text-white">{plataforma}</h1>
-              <Link
-                to={`/catalog/${id}`}
+              <button
                 className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-amber-700 hover:text-slate-100 focus:bg-gray-400 focus:outline-none"
+                onClick={() => handleDelCourse(course)}
               >
-                Ver más
-              </Link>
+                Eliminar
+              </button>
             </div>
           </div>
         </>
@@ -202,14 +219,14 @@ function Catalog() {
     <>
       {loading === false ? (
         <main>
-          <NavbarCatalog />
+          <NavbarManagement />
           <div id="top-index" className="App-header">
             <div className="absolute top-20 lg:top-28">
               <h1 className="text-4xl lg:text-6xl text-center font-semibold mt-10">
                 Catálogo
               </h1>
-              <div className="grid max-sm:grid-cols-3 max-sm:w-80 md:grid-cols-6 max-sm:gap-3 gap-5 mt-5 mx-auto">
-                <form className="max-sm:col-span-2 md:col-span-4">
+              <div className="grid max-sm:grid-cols-4 max-sm:w-80 md:grid-cols-6 max-sm:gap-3 gap-5 mt-5 mx-auto">
+                <form className="max-sm:col-span-2 md:col-span-2">
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <svg
@@ -285,40 +302,52 @@ function Catalog() {
                     </Menu.Dropdown>
                   </Menu>
                 </span>
+                <span className="max-sm:w-full max-sm:col-span-1 md:col-span-2 inset-y-0 left-0 flex">
+                  <Button
+                    className="max-sm:pl-7 rounded-lg border-2 bg-green-500 hover:bg-green-800 h-full md:text-xl"
+                    fullWidth="true"
+                    leftIcon={<IconNewSection size={20} />}
+                    onClick={handleAddCourse}
+                  >
+                    <p className="max-sm:hidden">Añadir</p>
+                  </Button>
+                </span>
               </div>
             </div>
             <div className="max-lg:mt-64 mt-80 mb-5 grid grid-cols-4 max-md:grid-cols-1 max-lg:grid-cols-2 items-center gap-5">
               {displayCourses}
             </div>
-            <span className="hover:text-red-700">
-              {paginate < course?.length && (
+            <div className="max-sm:grid max-sm:grid-cols-3 max-sm:gap-10">
+              <span className="md:fixed bottom-0 left-10 hover:text-yellow-400 max-sm:col-span-1">
                 <button
                   type="button"
                   className="mb-5 text-4xl"
-                  onClick={loadMore}
+                  onClick={() => navigate(-1)}
                 >
-                  <FontAwesomeIcon icon={faPlus} />
+                  <FontAwesomeIcon icon={faArrowLeftLong} />
                 </button>
-              )}
-            </span>
-            <span className="md:fixed bottom-0 right-10 hover:text-yellow-400">
-              <button
-                type="button"
-                className="mb-5 text-4xl"
-                onClick={scrollToTop}
-              >
-                <FontAwesomeIcon icon={faAngleDoubleUp} />
-              </button>
-            </span>
-            <span className="md:fixed bottom-0 left-10 hover:text-yellow-400">
-              <button
-                type="button"
-                className="mb-5 text-4xl"
-                onClick={() => navigate(-1)}
-              >
-                <FontAwesomeIcon icon={faArrowLeftLong} />
-              </button>
-            </span>
+              </span>
+              <span className="hover:text-red-700 max-sm:col-span-1">
+                {paginate < course?.length && (
+                  <button
+                    type="button"
+                    className="mb-5 text-4xl"
+                    onClick={loadMore}
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                  </button>
+                )}
+              </span>
+              <span className="md:fixed bottom-0 right-10 hover:text-yellow-400 max-sm:col-span-1">
+                <button
+                  type="button"
+                  className="mb-5 text-4xl"
+                  onClick={scrollToTop}
+                >
+                  <FontAwesomeIcon icon={faAngleDoubleUp} />
+                </button>
+              </span>
+            </div>
           </div>
         </main>
       ) : (
@@ -328,4 +357,4 @@ function Catalog() {
   );
 }
 
-export default Catalog;
+export default ContentManagement;

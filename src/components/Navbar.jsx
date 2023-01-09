@@ -6,13 +6,8 @@ import docentaLogo from "../images/docenta_logo_sm.png";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const Links = [
-    { name: "Catálogo", link: "/catalog" },
-    { name: "Contacto", link: "/" },
-    { name: "FAQ", link: "/" },
-    { name: "Entrar", link: "/login" },
-  ];
-
+  const loadLogin = sessionStorage.getItem("loggedIn");
+  const loadAdmin = sessionStorage.getItem("adminLogin");
   return (
     <>
       <nav className="max-lg:shadow-md w-full fixed top-0 left-0">
@@ -94,7 +89,7 @@ function Navbar() {
               className="md:ml-8 md:my-0 my-3 py-1"
             >
               <Link
-                to="/login"
+                to={`${loadLogin ? "/profile" : "/login"}`}
                 className="hover:text-rose-800 duration-300 text-gray-700 px-2 lg:text-white text-md lg:text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
               >
                 Entrar

@@ -56,14 +56,14 @@ function Login() {
             sessionStorage.setItem("nickName", nickName);
             sessionStorage.setItem("loggedIn", true);
             sessionStorage.setItem("adminLogin", true);
-            /* setTimeout(() => {
+            setTimeout(() => {
               window.location.replace("/management");
-            }, 500); */
+            }, 500);
           } else {
             sessionStorage.setItem("nickName", nickName);
             sessionStorage.setItem("loggedIn", true);
             setTimeout(() => {
-              window.location.replace("/profile");
+              window.location.replace("/catalog");
             }, 500);
           }
         } else {

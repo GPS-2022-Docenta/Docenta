@@ -6,6 +6,7 @@ import Loading from "../components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import { Menu, Button } from "@mantine/core";
+import { Link } from "react-router-dom";
 import {
   IconTypography,
   IconUser,
@@ -17,7 +18,6 @@ import {
 // URLs para manejo de datos en la BD
 const coursesURL = "https://docenta-api.vercel.app/courses";
 const favCoursesURL = "https://docenta-api.vercel.app/favoritos/";
-const delFavCourseURL = "https://docenta-api.vercel.app/delFavCourse/";
 
 function Favorites() {
   const coursesPerPage = 20;
@@ -29,22 +29,22 @@ function Favorites() {
   const [order, setOrder] = useState("Default");
   const [matchingCourses, setMatchingCourses] = useState([]);
 
-  const loadUserName = sessionStorage.getItem("nickName");
+  const loadNickName = sessionStorage.getItem("nickName");
 
   // Función para introducir la búsqueda en la barra
   const inputQuery = (e) => {
     setQuery(e.target.value);
   };
 
-  // Descargar datos a través de la API de CoinGecko
-  // + Obtener monedas favoritas a travñes de la API de Cryptoaholic
-  // + Buscar valores correspondientes de monedas en ambos arrays.
+  // Descargar datos a través de la API de Docenta
+  // + Obtener cursos favoritos a travñes de la API de Docenta
+  // + Buscar valores correspondientes de cursos en ambos arrays.
   const fetchCourses = async () => {
     // Variables temporales que se actualizan en el mismo render
     // (a diferencia del hook useState).
     let getCourse = [];
     let getFavCourse = [];
-    // Obtener monedas de la base de datos de CoinGecko
+    // Obtener monedas de la base de datos de Docenta
     await axios
       .get(coursesURL)
       .then((response) => {
@@ -52,15 +52,15 @@ function Favorites() {
         setCourse(response.data);
       })
       .catch((error) => console.error(`Error: ${error}`));
-    // Obtener monedas favoritas de la base de datos de Cryptoaholic.
+    // Obtener monedas favoritas de la base de datos de Docenta.
     await axios
-      .get(favCoursesURL + loadUserName)
+      .get(favCoursesURL + loadNickName)
       .then((response) => {
         getFavCourse = response.data;
         setFavCourse(response.data);
       })
       .catch((error) => console.error(`Error: ${error}`));
-    // Buscar valores correspondientes de monedas en un array y otro.
+    // Buscar valores correspondientes de cursos en un array y otro.
     const matching = getCourse.filter((o1) =>
       getFavCourse.some((o2) => o1.id === o2.id)
     );
@@ -144,19 +144,6 @@ function Favorites() {
     }
   };
 
-  const handleDelFav = async (course) => {
-    console.log(course);
-    console.log(loadUserName);
-    await axios
-      .delete(delFavCourseURL + loadUserName + "/" + course.id)
-      .then(() => {
-        fetchCourses();
-      })
-      .catch((error) => {
-        console.error("Ha habido un error!", error);
-      });
-  };
-
   const displayCourses = matchingCourses
     .filter((value) => {
       if (query === "") {
@@ -184,6 +171,7 @@ function Favorites() {
       return (
         <>
           <div
+            key={id}
             data-test="course-card"
             className="max-w-xs h-94 hover:scale-105 duration-200 overflow-hidden bg-white rounded-lg my-2 shadow-lg dark:bg-gray-800"
           >
@@ -207,12 +195,12 @@ function Favorites() {
 
             <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
               <h1 className="text-lg font-bold text-white">{plataforma}</h1>
-              <button
+              <Link
+                to={`/favorites/${id}`}
                 className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-amber-700 hover:text-slate-100 focus:bg-gray-400 focus:outline-none"
-                onClick={() => handleDelFav(course)}
               >
-                Eliminar
-              </button>
+                Ver más
+              </Link>
             </div>
           </div>
         </>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import "../css/catalog.css";
-import NavbarCatalog from "../components/NavbarCatalog";
 import Loading from "../components/Loader";
+import profileIcon from "../images/profile.png";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -18,14 +19,15 @@ import {
   IconSortAscending,
   IconArrowBackUp,
 } from "@tabler/icons";
+import NavbarManagement from "../components/NavbarManagement";
 
 // URLs para manejo de datos en la BD
-const coursesURL = "https://docenta-api.vercel.app/courses";
-const addFavCoursesURL = "https://docenta-api.vercel.app/addFavCourse/";
+const usersURL = "https://docenta-api.vercel.app/users";
+const delUserURL = "https://docenta-api.vercel.app/deleteUser/";
 
-function Catalog() {
+function UserManagement() {
   const coursesPerPage = 20;
-  const [course, setCourse] = useState([]);
+  const [user, setUser] = useState([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [paginate, setPaginate] = useState(coursesPerPage);
@@ -41,12 +43,22 @@ function Catalog() {
     setQuery(e.target.value);
   };
 
+  // Descargar usuarios a través de la API
+  const fetchUsers = async () => {
+    await axios
+      .get(usersURL)
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  };
+
   useEffect(() => {
-    const fetchCourse = async () => {
-      const { data } = await axios.get(coursesURL);
-      setCourse(data);
+    const fetchUsers = async () => {
+      const { data } = await axios.get(usersURL);
+      setUser(data);
     };
-    fetchCourse();
+    fetchUsers();
     setTimeout(() => setLoading(false), 1500);
   }, []);
 
@@ -67,131 +79,153 @@ function Catalog() {
 
   // Ordenar por defecto
   const sortByDefault = () => {
-    if (order === "Nombre" || order === "Autor" || order === "Plataforma") {
+    if (order === "Nombre" || order === "Apellido" || order === "País") {
       setOrder("Default");
-      setCourse(
-        course.sort((a, b) => {
-          return a.id - b.id;
-        })
+      setUser(
+        user.sort((a, b) =>
+          a.nickName.toLowerCase() > b.nickName.toLowerCase() ? 1 : -1
+        )
       );
     } else {
-      return course;
+      return user;
     }
   };
 
   // Ordenar por nombre
-  const sortByName = () => {
-    if (order === "Default" || order === "Autor" || order === "Plataforma") {
+  const sortByFirstName = () => {
+    if (order === "Default" || order === "Apellido" || order === "País") {
       setOrder("Nombre");
-      setCourse(
-        course.sort((a, b) =>
-          a.nombre.toLowerCase() > b.nombre.toLowerCase() ? 1 : -1
+      setUser(
+        user.sort((a, b) =>
+          a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1
         )
       );
     } else {
-      return course;
+      return user;
     }
   };
 
   // Ordenar por autor
-  const sortByAuthor = () => {
-    if (order === "Default" || order === "Nombre" || order === "Plataforma") {
-      setOrder("Autor");
-      setCourse(
-        course.sort((a, b) =>
-          a.autor.toLowerCase() > b.autor.toLowerCase() ? 1 : -1
+  const sortByLastName = () => {
+    if (order === "Default" || order === "Nombre" || order === "País") {
+      setOrder("Apellido");
+      setUser(
+        user.sort((a, b) =>
+          a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1
         )
       );
     } else {
-      return course;
+      return user;
     }
   };
 
   // Ordenar por plataforma
-  const sortByPlatform = () => {
-    if (order === "Default" || order === "Nombre" || order === "Autor") {
-      setOrder("Plataforma");
-      setCourse(
-        course.sort((a, b) =>
-          a.plataforma.toLowerCase() > b.plataforma.toLowerCase() ? 1 : -1
+  const sortByCountry = () => {
+    if (order === "Default" || order === "Nombre" || order === "Apellido") {
+      setOrder("País");
+      setUser(
+        user.sort((a, b) =>
+          a.country.toLowerCase() > b.country.toLowerCase() ? 1 : -1
         )
       );
     } else {
-      return course;
+      return user;
     }
   };
 
-  const handleAddFav = async (course) => {
-    await axios
-      .post(addFavCoursesURL, {
-        nickName: loadUserName,
-        id: course.id,
-      })
-      .then(() => {
-        console.error("Curso añadido con éxito!");
-      })
-      .catch((error) => {
-        console.error("Ha habido un error!", error);
+  const handleDelUser = async (user) => {
+    if (user.nickName === "admin") {
+      Swal.fire({
+        title: "¡Acción denegada!",
+        text: "No puedes eliminar a este usuario...",
+        icon: "error",
       });
+    } else {
+      Swal.fire({
+        title: "¿Deseas eliminar el usuario?",
+        text: "¡Los cambios serán irreversibles!",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, ¡elimínalo!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete(delUserURL + user.nickName);
+          Swal.fire({
+            title: "¡Éxito!",
+            text: "El usuario se ha eliminado correctamente.",
+            icon: "success",
+            timer: 1000,
+          }).then(() => {
+            fetchUsers();
+          });
+        }
+      });
+    }
   };
 
-  const displayCourses = course
+  console.log(query);
+
+  const displayUsers = user
     .filter((value) => {
       if (query === "") {
         return value;
       } else if (
-        value.nombre.toLowerCase().includes(query.toLocaleLowerCase()) ||
-        value.plataforma.toLowerCase().includes(query.toLocaleLowerCase())
+        value.nickName.toLowerCase().includes(query.toLocaleLowerCase()) ||
+        value.firstName.toLowerCase().includes(query.toLocaleLowerCase()) ||
+        value.lastName.toLowerCase().includes(query.toLocaleLowerCase()) ||
+        value.country.toLowerCase().includes(query.toLocaleLowerCase())
       ) {
         return value;
       }
     })
     .slice(0, paginate)
-    .map((course) => {
+    .map((user) => {
       const {
-        id,
-        nombre,
-        categoria,
-        descripcion,
-        imagen,
-        enlace,
-        autor,
-        plataforma,
-      } = course;
+        firstName,
+        lastName,
+        email,
+        birthday,
+        country,
+        gender,
+        phone,
+        nickName,
+      } = user;
 
       return (
         <>
           <div
-            key={id}
             data-test="course-card"
             className="max-w-xs h-94 hover:scale-105 duration-200 overflow-hidden bg-white rounded-lg my-2 shadow-lg dark:bg-gray-800"
           >
             <div className="px-4 py-2">
               <h1 className="text-3xl h-22 truncate font-bold text-gray-800 uppercase dark:text-white">
-                {nombre}
+                {nickName}
               </h1>
               <p className="mt-2 h-8 truncate text-sm text-gray-600 dark:text-gray-400">
-                {descripcion}
+                {email}
               </p>
               <p className="text-sm font-bold italic text-gray-600 dark:text-gray-400">
-                {autor}
+                {firstName + " " + lastName}
               </p>
             </div>
 
             <img
               className="object-cover bg-white w-full h-48 mt-2"
-              src={imagen}
-              alt={nombre}
+              src={profileIcon}
+              alt={nickName}
             />
 
             <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
-              <h1 className="text-lg font-bold text-white">{plataforma}</h1>
-              <Link
-                to={`/catalog/${id}`}
+              <h1 className="text-lg font-bold text-white">{country}</h1>
+              <button
                 className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-amber-700 hover:text-slate-100 focus:bg-gray-400 focus:outline-none"
+                onClick={() => handleDelUser(user)}
               >
-                Ver más
-              </Link>
+                Eliminar
+              </button>
             </div>
           </div>
         </>
@@ -202,11 +236,11 @@ function Catalog() {
     <>
       {loading === false ? (
         <main>
-          <NavbarCatalog />
+          <NavbarManagement />
           <div id="top-index" className="App-header">
             <div className="absolute top-20 lg:top-28">
               <h1 className="text-4xl lg:text-6xl text-center font-semibold mt-10">
-                Catálogo
+                Administrar usuarios
               </h1>
               <div className="grid max-sm:grid-cols-3 max-sm:w-80 md:grid-cols-6 max-sm:gap-3 gap-5 mt-5 mx-auto">
                 <form className="max-sm:col-span-2 md:col-span-4">
@@ -260,27 +294,27 @@ function Catalog() {
                       <Menu.Label>Atributo</Menu.Label>
                       <Menu.Item
                         icon={<IconTypography size={14} />}
-                        onClick={sortByName}
+                        onClick={sortByFirstName}
                       >
                         Nombre
                       </Menu.Item>
                       <Menu.Item
                         icon={<IconUser size={14} />}
-                        onClick={sortByAuthor}
+                        onClick={sortByLastName}
                       >
-                        Autor
+                        Apellido
                       </Menu.Item>
                       <Menu.Item
                         icon={<IconWorld size={14} />}
-                        onClick={sortByPlatform}
+                        onClick={sortByCountry}
                       >
-                        Plataforma
+                        País
                       </Menu.Item>
                       <Menu.Item
                         icon={<IconArrowBackUp size={14} />}
                         onClick={sortByDefault}
                       >
-                        Por defecto (ID)
+                        Por defecto (NickName)
                       </Menu.Item>
                     </Menu.Dropdown>
                   </Menu>
@@ -288,37 +322,39 @@ function Catalog() {
               </div>
             </div>
             <div className="max-lg:mt-64 mt-80 mb-5 grid grid-cols-4 max-md:grid-cols-1 max-lg:grid-cols-2 items-center gap-5">
-              {displayCourses}
+              {displayUsers}
             </div>
-            <span className="hover:text-red-700">
-              {paginate < course?.length && (
+            <div className="max-sm:grid max-sm:grid-cols-3 max-sm:gap-10">
+              <span className="md:fixed bottom-0 left-10 hover:text-yellow-400 max-sm:col-span-1">
                 <button
                   type="button"
                   className="mb-5 text-4xl"
-                  onClick={loadMore}
+                  onClick={() => navigate(-1)}
                 >
-                  <FontAwesomeIcon icon={faPlus} />
+                  <FontAwesomeIcon icon={faArrowLeftLong} />
                 </button>
-              )}
-            </span>
-            <span className="md:fixed bottom-0 right-10 hover:text-yellow-400">
-              <button
-                type="button"
-                className="mb-5 text-4xl"
-                onClick={scrollToTop}
-              >
-                <FontAwesomeIcon icon={faAngleDoubleUp} />
-              </button>
-            </span>
-            <span className="md:fixed bottom-0 left-10 hover:text-yellow-400">
-              <button
-                type="button"
-                className="mb-5 text-4xl"
-                onClick={() => navigate(-1)}
-              >
-                <FontAwesomeIcon icon={faArrowLeftLong} />
-              </button>
-            </span>
+              </span>
+              <span className="hover:text-red-700 max-sm:col-span-1">
+                {paginate < user?.length && (
+                  <button
+                    type="button"
+                    className="mb-5 text-4xl"
+                    onClick={loadMore}
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                  </button>
+                )}
+              </span>
+              <span className="md:fixed bottom-0 right-10 hover:text-yellow-400 max-sm:col-span-1">
+                <button
+                  type="button"
+                  className="mb-5 text-4xl"
+                  onClick={scrollToTop}
+                >
+                  <FontAwesomeIcon icon={faAngleDoubleUp} />
+                </button>
+              </span>
+            </div>
           </div>
         </main>
       ) : (
@@ -328,4 +364,4 @@ function Catalog() {
   );
 }
 
-export default Catalog;
+export default UserManagement;
