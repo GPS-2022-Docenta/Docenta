@@ -197,7 +197,7 @@ function UserManagement() {
       return (
         <>
           <div
-            data-test="course-card"
+            data-test="user-card"
             className="max-w-xs h-94 hover:scale-105 duration-200 overflow-hidden bg-white rounded-lg my-2 shadow-lg dark:bg-gray-800"
           >
             <div className="px-4 py-2">
@@ -327,9 +327,10 @@ function UserManagement() {
             <div className="max-sm:grid max-sm:grid-cols-3 max-sm:gap-10">
               <span className="md:fixed bottom-0 left-10 hover:text-yellow-400 max-sm:col-span-1">
                 <button
+                  data-test="back-button"
                   type="button"
                   className="mb-5 text-4xl"
-                  onClick={() => navigate(-1)}
+                  onClick={() => navigate("/management")}
                 >
                   <FontAwesomeIcon icon={faArrowLeftLong} />
                 </button>

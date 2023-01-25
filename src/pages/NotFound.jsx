@@ -22,6 +22,7 @@ function NotFound() {
                 otra URL.
               </h4>
               <button
+                data-test="back-button"
                 className="mx-auto col-span-1 inline-block px-5 py-3 mt-4 rounded-xl bg-indigo-600 hover:bg-indigo-800 text-center tracking-wider font-semibold text-md text-white shadow-lg lg:text-2xl w-80 max-sm:w-full"
                 type="button"
                 style={{ transition: "all .15s ease" }}

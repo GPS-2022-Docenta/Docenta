@@ -1,4 +1,4 @@
-describe("Profile page", () => {
+describe("Register page", () => {
   beforeEach("Carga la página de registro", () => {
     cy.visit("/register");
   });

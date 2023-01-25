@@ -44,14 +44,7 @@ function Course() {
     setLink(data[0].enlace);
   };
 
-  const fetchFavCourse = async () => {
-    const { data } = await axios.get(favCoursesURL + loadNickName + "/" + id);
-    setFavCourse(data);
-    setProgress(data[0].progreso);
-  };
-
   useEffect(() => {
-    fetchFavCourse();
     fetchCourse();
     //eslint-disable-next-line
   }, []);

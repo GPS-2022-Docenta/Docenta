@@ -21,4 +21,11 @@ describe("Home page", () => {
       .click();
     cy.url().should("include", "/catalog");
   });
+
+  it("Carga página no encontrada", () => {
+    cy.visit("/*");
+    cy.get("div").should("exist").contains("Algo no ha ido bien...");
+    cy.get("[data-test='back-button']").should("exist").click();
+    cy.url().should("include", "/");
+  });
 });

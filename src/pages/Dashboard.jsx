@@ -187,9 +187,10 @@ function Dashboard() {
             </div>
             <span className="md:fixed bottom-0 left-10 hover:text-yellow-400">
               <button
+                data-test="back-button"
                 type="button"
                 className="mb-5 text-4xl"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/management")}
               >
                 <FontAwesomeIcon icon={faArrowLeftLong} />
               </button>

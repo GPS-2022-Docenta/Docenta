@@ -249,7 +249,7 @@ function AddCourse() {
                   className="lg:col-span-1 inline-block px-5 py-3 mt-4 rounded-3xl bg-red-600 hover:bg-red-800 uppercase text-center tracking-wider font-semibold text-md text-white shadow-lg lg:text-2xl w-full"
                   type="button"
                   style={{ transition: "all .15s ease" }}
-                  onClick={() => navigate(-1)}
+                  onClick={() => navigate("/content-management")}
                 >
                   Volver
                 </button>

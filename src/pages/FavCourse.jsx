@@ -118,6 +118,7 @@ function FavCourse() {
                 {name}
               </h1>
               <button
+                data-test="del-button"
                 onClick={() => handleDelFav(course)}
                 className="hover:cursor-pointer hover:text-red-700 max-lg:text-3xl items-end lg:text-5xl lg:mt-10 col-span-1 flex flex-col justify-center"
               >
@@ -164,6 +165,7 @@ function FavCourse() {
                       Introduce aquí tu progreso.
                     </label>
                     <input
+                      name="progress"
                       type="text"
                       id="id"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:outline-grey-800 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-600 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -171,6 +173,7 @@ function FavCourse() {
                       onChange={({ target }) => setProgress(target.value)}
                     />
                     <button
+                      name="progress-update"
                       className="col-span-1 inline-block px-5 py-3 mt-4 rounded-xl bg-indigo-600 hover:bg-indigo-800 uppercase text-center tracking-wider font-semibold text-md text-white shadow-lg lg:text-xl w-full"
                       type="button"
                       style={{ transition: "all .15s ease" }}

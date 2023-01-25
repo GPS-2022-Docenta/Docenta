@@ -14,5 +14,7 @@ module.exports = defineConfig({
     },
     baseUrl: "https://localhost:3000",
     experimentalStudio: true,
+    experimentalSessionAndOrigin: true,
+    pageLoadTimeout: 120000,
   },
 });

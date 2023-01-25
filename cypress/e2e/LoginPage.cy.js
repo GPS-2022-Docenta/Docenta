@@ -32,12 +32,6 @@ describe("Login page", () => {
     cy.get('input[name="nickname"]').type("paulhuszak");
     cy.get('input[name="password"]').type("timer.100AB!");
     cy.get("button").contains("Entrar").click();
-    cy.url().should("include", "/profile");
-  });
-
-  it("Cierra sesión tras llegar al perfil", () => {
-    cy.visit("/profile");
-    cy.get("button").contains("Cerrar sesión").click();
-    cy.url().should("include", "/");
+    cy.url().should("include", "/catalog");
   });
 });

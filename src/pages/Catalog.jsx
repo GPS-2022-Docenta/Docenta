@@ -241,7 +241,10 @@ function Catalog() {
                     />
                   </div>
                 </form>
-                <span className="max-sm:w-full max-sm:col-span-1 md:col-span-2 inset-y-0 left-0 flex">
+                <span
+                  data-test="order-btn"
+                  className="max-sm:w-full max-sm:col-span-1 md:col-span-2 inset-y-0 left-0 flex"
+                >
                   <Menu
                     className="max-sm:pl-7"
                     shadow="md"
@@ -257,26 +260,30 @@ function Catalog() {
                     </Menu.Target>
 
                     <Menu.Dropdown>
-                      <Menu.Label>Atributo</Menu.Label>
+                      <Menu.Label data-test="attribute">Atributo</Menu.Label>
                       <Menu.Item
+                        data-test="order-name"
                         icon={<IconTypography size={14} />}
                         onClick={sortByName}
                       >
                         Nombre
                       </Menu.Item>
                       <Menu.Item
+                        data-test="order-author"
                         icon={<IconUser size={14} />}
                         onClick={sortByAuthor}
                       >
                         Autor
                       </Menu.Item>
                       <Menu.Item
+                        data-test="order-platform"
                         icon={<IconWorld size={14} />}
                         onClick={sortByPlatform}
                       >
                         Plataforma
                       </Menu.Item>
                       <Menu.Item
+                        data-test="order-default"
                         icon={<IconArrowBackUp size={14} />}
                         onClick={sortByDefault}
                       >
@@ -293,6 +300,7 @@ function Catalog() {
             <span className="hover:text-red-700">
               {paginate < course?.length && (
                 <button
+                  data-test="more-button"
                   type="button"
                   className="mb-5 text-4xl"
                   onClick={loadMore}
@@ -303,6 +311,7 @@ function Catalog() {
             </span>
             <span className="md:fixed bottom-0 right-10 hover:text-yellow-400">
               <button
+                data-test="top-button"
                 type="button"
                 className="mb-5 text-4xl"
                 onClick={scrollToTop}
@@ -312,6 +321,7 @@ function Catalog() {
             </span>
             <span className="md:fixed bottom-0 left-10 hover:text-yellow-400">
               <button
+                data-test="back-button"
                 type="button"
                 className="mb-5 text-4xl"
                 onClick={() => navigate(-1)}
