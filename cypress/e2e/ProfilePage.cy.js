@@ -3,14 +3,11 @@ describe("Profile page", () => {
     cy.visit("/login");
   });
 
-  it("Introducir campos correctos en el formulario", () => {
+  it("Inicia sesión, accede al perfil y cierra sesión", () => {
     cy.get('input[name="nickname"]').type("paulhuszak");
     cy.get('input[name="password"]').type("timer.100AB!");
     cy.get("button").contains("Entrar").click();
     cy.url().should("include", "/catalog");
-  });
-
-  it("Cierra sesión tras llegar al perfil", () => {
     cy.visit("/profile");
     cy.get("div").should("exist").contains("Paul");
     cy.get("button").contains("Editar perfil").click();

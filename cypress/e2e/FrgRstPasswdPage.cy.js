@@ -14,7 +14,7 @@ describe("Forgot password page", () => {
   });
 
   it("Introducir campos incorrectos en el formulario", () => {
-    cy.get('input[name="email"]').type("pedropicapiedra@gmail.com");
+    cy.get('input[name="email"]').type("pedropicapiedra3@gmail.com");
     cy.get("button").contains("Enviar").click();
     cy.window("div").contains(
       "El correo introducido no está asociado a ninguna cuenta."
